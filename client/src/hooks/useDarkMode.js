@@ -12,7 +12,7 @@ function useDarkMode() {
     const onChange = ({ matches }) => setIsDark(matches);
     matcher.addEventListener("change", onChange);
     return () => {
-      matcher.removeEventListener(onChange);
+      matcher.removeEventListener("change", onChange);
     }
   }, [setIsDark]);
 
