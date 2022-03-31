@@ -10,6 +10,7 @@ import MainPage from './pages/MainPage';
 import CoachPortal from './pages/CoachPortal';
 import MemberPortal from './pages/MemberPortal';
 import TreasurerPortal from './pages/TreasurerPortal';
+import { UserStore } from './contexts/UserContext';
 
 function App() {
   const theme = createTheme({
@@ -20,18 +21,20 @@ function App() {
 
   return (
     <React.Fragment>
-      <ThemeProvider theme={theme}>
-        <CssBaseline enableColorScheme />
-        <BrowserRouter>
-          <AppBar />
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/Coach" element={<CoachPortal />} />
-            <Route path="/Member" element={<MemberPortal />} />
-            <Route path="/Treasurer" element={<TreasurerPortal />} />
-          </Routes>
-        </BrowserRouter>
-      </ThemeProvider>
+      <UserStore>
+        <ThemeProvider theme={theme}>
+          <CssBaseline enableColorScheme />
+          <BrowserRouter>
+            <AppBar />
+            <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/Coach" element={<CoachPortal />} />
+              <Route path="/Member" element={<MemberPortal />} />
+              <Route path="/Treasurer" element={<TreasurerPortal />} />
+            </Routes>
+          </BrowserRouter>
+        </ThemeProvider>
+      </UserStore>
     </React.Fragment>
   );
 }
