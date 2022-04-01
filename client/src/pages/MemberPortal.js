@@ -1,7 +1,14 @@
 import React from 'react';
 
+import Payment from '../components/Payment';
+
 const MemberPortal = () => {
-  return <div>MemberPortal</div>;
+  return (
+    <div>
+      <div>MemberPortal</div>
+      <Payment />
+    </div>
+  );
 };
 
 export default MemberPortal;

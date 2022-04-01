@@ -12,13 +12,7 @@ import MemberPortal from './pages/MemberPortal';
 import TreasurerPortal from './pages/TreasurerPortal';
 import { UserStore } from './contexts/UserContext';
 
-import jsonDB from './apis/jsonDB';
-
 function App() {
-  jsonDB.get('/users/1').then((data) => {
-    console.log(data);
-  });
-
   const theme = createTheme({
     palette: {
       mode: useDarkMode() ? 'dark' : 'light',

@@ -1,8 +1,36 @@
 {
   "users": [
-    { "id": 1, "name": "Nathan", "role": "Coach", "password": "asd" }
+    {
+      "id": 1,
+      "name": "Nathan",
+      "role": "Coach",
+      "password": "asd"
+    },
+    {
+      "id": 2,
+      "name": "John",
+      "role": "Member",
+      "password": "asd"
+    }
   ],
-  "messages": [
-    { "id": 1, "messages": [] }
+  "user_messages": [
+    {
+      "id": 1,
+      "messages": [
+        {
+          "message": "asdasdasd",
+          "date": "2022-04-01T16:57:13.249Z"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "messages": [
+        {
+          "message": "asdasdasdasdasd",
+          "date": "2022-04-01T17:11:11.836Z"
+        }
+      ]
+    }
   ]
 }
