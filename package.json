@@ -24,6 +24,7 @@
     "npm-run-all": "^4.1.5"
   },
   "dependencies": {
-    "@mui/x-data-grid": "^5.7.0"
+    "@mui/x-data-grid": "^5.7.0",
+    "@mui/x-data-grid-pro": "^5.7.0"
   }
 }
