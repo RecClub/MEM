@@ -1,0 +1,8 @@
+{
+  "users": [
+    { "id": 1, "name": "Nathan", "role": "Coach", "password": "asd" }
+  ],
+  "messages": [
+    { "id": 1, "messages": [] }
+  ]
+}
