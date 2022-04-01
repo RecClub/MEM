@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "npm run start --prefix server",
+    "checkout_server": "npm run checkout_server --prefix server",
+    "database_server": "npm run database_server --prefix server",
     "client": "npm run start --prefix client",
-    "start": "npm-run-all --parallel client server"
+    "start": "npm-run-all --parallel client checkout_server database_server"
   },
   "repository": {
     "type": "git",
@@ -22,9 +23,5 @@
   "homepage": "https://github.com/RecClub/MEM#readme",
   "devDependencies": {
     "npm-run-all": "^4.1.5"
-  },
-  "dependencies": {
-    "@mui/x-data-grid": "^5.7.0",
-    "@mui/x-data-grid-pro": "^5.7.0"
   }
 }
