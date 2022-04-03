@@ -1,7 +1,184 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+
+import jsonDB from '../apis/jsonDB';
+
+import { Link } from "react-router-dom";
+
+const dbContext = React.createContext({
+  users: [],
+  setUsers: () => { }
+});
+
+const LoginPanel = (props) => {
+  let [inputName, setInputName] = useState("");
+  let [inputPsw, setInputPsw] = useState("");
+
+  let userList = props.users;
+  let dest = "/";
+
+
+  const OnNameChange = (e) => {
+    setInputName(e.target.value);
+  }
+
+  const OnPswChange = (e) => {
+    setInputPsw(e.target.value);
+  }
+
+  const OnLogIn = () => {
+
+    let filter = userList.filter(x => (x.name == inputName));
+    if (filter.length == 1) {
+      if (filter[0].password == inputPsw) {
+        dest += filter[0].role;
+      }
+    }
+
+    return dest;
+
+  }
+
+  return (
+    <Paper sx={{ height: "30vmax", width: "30vmax", margin: "5px" }}>
+      <Grid container sx={{ height: "100%", padding: "5px" }} direction="column" justifyContent="space-between" alignItems="stretch">
+        <Grid item>
+          <Typography variant='h4' component='h4'>
+            Log In
+          </Typography>
+        </Grid>
+
+        <Grid item>
+          <TextField sx={{ width: "100%" }} required variant='standard' label='User Name' onChange={OnNameChange} value={inputName} />
+        </Grid>
+
+        <Grid item>
+          <TextField sx={{ width: "100%" }} required variant='standard' label='Password' onChange={OnPswChange} value={inputPsw} />
+        </Grid>
+
+        <Grid item>
+          <Button component={Link} to={OnLogIn()} variant='contained'>Log In</Button>
+        </Grid>
+
+      </Grid>
+    </Paper>
+  );
+}
+
+const RegisterPanel = (props) => {
+
+  let [inputName, setInputName] = useState("");
+  let [inputPsw, setInputPsw] = useState("");
+  let [inputConfirmPsw, setInputConfirmPsw] = useState("");
+
+  let userList = props.users;
+
+  const OnNameChange = (e) => {
+    setInputName(e.target.value);
+  }
+
+  const OnPswChange = (e) => {
+    setInputPsw(e.target.value);
+  }
+
+  const OnConfirmPswChange = (e) => {
+    setInputConfirmPsw(e.target.value);
+  }
+
+  const OnRegister = () => {
+
+    if (inputPsw == inputConfirmPsw) {
+
+      let filter = userList.filter(x => (x.name == inputName));
+      if (filter.length == 0) {
+        let id = userList.length + 1;
+        userList.push({
+          id,
+          name: inputName,
+          role: "Member",
+          password: inputPsw
+        })
+
+        props.setUsers(userList);
+
+        jsonDB.post("/users", {
+          name: inputName,
+          role: "Member",
+          password: inputPsw
+        })
+      }
+
+    }
+
+  }
+
+  return (
+    <Paper sx={{ height: "30vmax", width: "30vmax", margin: "5px" }}>
+
+      <Grid container sx={{ height: "100%", padding: "5px" }} direction="column" justifyContent="space-between" alignItems="stretch">
+        <Grid item>
+          <Typography variant='h4' component='h4'>
+            Register
+          </Typography>
+        </Grid>
+
+        <Grid item>
+          <TextField sx={{ width: "100%" }} required variant='standard' label='User Name' onChange={OnNameChange} value={inputName} />
+        </Grid>
+
+        <Grid item>
+          <TextField sx={{ width: "100%" }} required variant='standard' label='Password' onChange={OnPswChange} value={inputPsw} />
+        </Grid>
+
+
+        <Grid item>
+          <TextField sx={{ width: "100%" }} required variant='standard' label='Confirm Password' onChange={OnConfirmPswChange} value={inputConfirmPsw} />
+        </Grid>
+
+
+        <Grid item>
+          <Button variant='contained' onClick={OnRegister}>Register</Button>
+        </Grid>
+
+      </Grid>
+
+    </Paper>
+  );
+}
 
 const MainPage = () => {
-  return <div>MainPage</div>;
+
+  let [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    let getReq = jsonDB.get("/users");
+    getReq.then(res => setUsers(res.data));
+  }, [])
+
+  return (
+
+    <dbContext.Provider value={{ users, setUsers }}>
+      <dbContext.Consumer>
+
+        {({users, setUsers}) => (
+          <Grid sx={{ height: "calc(100vh - 68.5px)", width: "100vw" }} container justifyContent="center" alignItems="center">
+            <Grid item>
+              <LoginPanel users={users} />
+            </Grid>
+            <Grid item>
+              <RegisterPanel users={users} setUsers={setUsers} />
+            </Grid>
+          </Grid>
+        )}
+
+      </dbContext.Consumer>
+    </dbContext.Provider>
+
+  );
 };
 
 export default MainPage;
