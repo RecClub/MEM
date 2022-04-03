@@ -9,6 +9,8 @@ import jsonDB from '../apis/jsonDB';
 
 import { Link } from "react-router-dom";
 
+import Context from '../contexts/UserContext';
+
 const dbContext = React.createContext({
   users: [],
   setUsers: () => { }
@@ -21,7 +23,6 @@ const LoginPanel = (props) => {
   let userList = props.users;
   let dest = "/";
 
-
   const OnNameChange = (e) => {
     setInputName(e.target.value);
   }
@@ -30,7 +31,7 @@ const LoginPanel = (props) => {
     setInputPsw(e.target.value);
   }
 
-  const OnLogIn = () => {
+  const getDest = () => {
 
     let filter = userList.filter(x => (x.name == inputName));
     if (filter.length == 1) {
@@ -41,6 +42,16 @@ const LoginPanel = (props) => {
 
     return dest;
 
+  }
+
+  const OnLogIn = () => {
+
+    let filter = userList.filter(x => (x.name == inputName));
+    if (filter.length == 1) {
+      if (filter[0].password == inputPsw) {
+        props.setID({ 'userID': filter[0].id });
+      }
+    }
   }
 
   return (
@@ -61,7 +72,7 @@ const LoginPanel = (props) => {
         </Grid>
 
         <Grid item>
-          <Button component={Link} to={OnLogIn()} variant='contained'>Log In</Button>
+          <Button component={Link} onClick={OnLogIn} to={getDest()} variant='contained'>Log In</Button>
         </Grid>
 
       </Grid>
@@ -164,15 +175,19 @@ const MainPage = () => {
     <dbContext.Provider value={{ users, setUsers }}>
       <dbContext.Consumer>
 
-        {({users, setUsers}) => (
-          <Grid sx={{ height: "calc(100vh - 68.5px)", width: "100vw" }} container justifyContent="center" alignItems="center">
-            <Grid item>
-              <LoginPanel users={users} />
-            </Grid>
-            <Grid item>
-              <RegisterPanel users={users} setUsers={setUsers} />
-            </Grid>
-          </Grid>
+        {({ users, setUsers }) => (
+          <Context.Consumer>
+            {({ userID, setUserID }) => (
+              <Grid sx={{ height: "calc(100vh - 68.5px)", width: "100vw" }} container justifyContent="center" alignItems="center">
+                <Grid item>
+                  <LoginPanel users={users} setID={setUserID} />
+                </Grid>
+                <Grid item>
+                  <RegisterPanel users={users} setUsers={setUsers} />
+                </Grid>
+              </Grid>
+            )}
+          </Context.Consumer>
         )}
 
       </dbContext.Consumer>

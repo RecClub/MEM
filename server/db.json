@@ -11,6 +11,12 @@
       "name": "John",
       "role": "Member",
       "password": "asd"
+    },
+    {
+      "name": "testbot",
+      "role": "Member",
+      "password": "123",
+      "id": 3
     }
   ],
   "user_messages": [
