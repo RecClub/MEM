@@ -52,19 +52,24 @@
       "id": 1,
       "number": "1",
       "attending": ["Nathan", "John", "Steph"],
-      "paid": ["Nathan", "Steph"]
-    },
-    {
-      "id": 1,
-      "number": "1",
-      "attending": ["Nathan", "John", "Steph"],
-      "paid": ["Nathan", "John"]
-    },
-    {
-      "id": 1,
-      "number": "1",
-      "attending": ["Nathan", "John", "Steph"],
-      "paid": ["Nathan"]
+      "paid": ["Yes", "No", "Yes"]
     }
-  ]
+  ],
+  "claslog": {
+    "Class 1": [
+      {"Name" : "Nathan", "Paid" : "Yes"},
+      {"Name" : "John", "Paid" : "No"},
+      {"Name" : "Steph", "Paid" : "Yes"}
+    ],
+    "Class 2": [
+      {"Name" : "Nathan", "Paid" : "Yes"},
+      {"Name" : "John", "Paid" : "Yes"},
+      {"Name" : "Steph", "Paid" : "No"}
+    ],
+    "Class 3": [
+      {"Name" : "Nathan", "Paid" : "Yes"},
+      {"Name" : "John", "Paid" : "No"},
+      {"Name" : "Steph", "Paid" : "Yes"}
+    ]
+  }
 }
