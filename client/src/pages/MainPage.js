@@ -95,6 +95,7 @@ const RegisterPanel = (props) => {
   let [inputName, setInputName] = useState("");
   let [inputPsw, setInputPsw] = useState("");
   let [inputAddress, setInputAddress] = useState("");
+  let [inputPhone, setPhone] = useState("");
   let [inputConfirmPsw, setInputConfirmPsw] = useState("");
   let [feedback, setFeedback] = useState(" ");
 
@@ -110,6 +111,10 @@ const RegisterPanel = (props) => {
 
   const OnPswChange = (e) => {
     setInputPsw(e.target.value);
+  }
+
+  const onPhoneChange = (e) => {
+    setPhone(e.target.value);
   }
 
   const OnConfirmPswChange = (e) => {
@@ -132,6 +137,9 @@ const RegisterPanel = (props) => {
             userList.push({
               id,
               name: inputName,
+              phone: inputPhone,
+              address: inputAddress,
+              class: {},
               role: "Member",
               password: inputPsw
             })
@@ -140,6 +148,9 @@ const RegisterPanel = (props) => {
 
             jsonDB.post("/users", {
               name: inputName,
+              phone: inputPhone,
+              address: inputAddress,
+              class: {},
               role: "Member",
               password: inputPsw
             })
@@ -174,6 +185,10 @@ const RegisterPanel = (props) => {
 
         <Grid item>
           <TextField sx={{ width: "100%" }} required variant='standard' label='User Name' onChange={OnNameChange} value={inputName} />
+        </Grid>
+
+        <Grid item>
+          <TextField sx={{ width: "100%" }} required variant='standard' label='Phone Number' onChange={onPhoneChange} value={inputPhone} />
         </Grid>
 
         <Grid item>
