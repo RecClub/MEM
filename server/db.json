@@ -51,25 +51,60 @@
     {
       "id": 1,
       "number": "1",
-      "attending": ["Nathan", "John", "Steph"],
-      "paid": ["Yes", "No", "Yes"]
+      "attending": [
+        "Nathan",
+        "John",
+        "Steph"
+      ],
+      "paid": [
+        "Yes",
+        "No",
+        "Yes"
+      ]
     }
   ],
   "claslog": {
     "Class 1": [
-      {"Name" : "Nathan", "Paid" : "Yes"},
-      {"Name" : "John", "Paid" : "No"},
-      {"Name" : "Steph", "Paid" : "Yes"}
+      {
+        "Name": "Nathan",
+        "Paid": "Yes"
+      },
+      {
+        "Name": "John",
+        "Paid": "No"
+      },
+      {
+        "Name": "Steph",
+        "Paid": "Yes"
+      }
     ],
     "Class 2": [
-      {"Name" : "Nathan", "Paid" : "Yes"},
-      {"Name" : "John", "Paid" : "Yes"},
-      {"Name" : "Steph", "Paid" : "No"}
+      {
+        "Name": "Nathan",
+        "Paid": "Yes"
+      },
+      {
+        "Name": "John",
+        "Paid": "Yes"
+      },
+      {
+        "Name": "Steph",
+        "Paid": "No"
+      }
     ],
     "Class 3": [
-      {"Name" : "Nathan", "Paid" : "Yes"},
-      {"Name" : "John", "Paid" : "No"},
-      {"Name" : "Steph", "Paid" : "Yes"}
+      {
+        "Name": "Nathan",
+        "Paid": "Yes"
+      },
+      {
+        "Name": "John",
+        "Paid": "No"
+      },
+      {
+        "Name": "Steph",
+        "Paid": "Yes"
+      }
     ]
   }
 }

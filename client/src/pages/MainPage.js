@@ -19,6 +19,7 @@ const dbContext = React.createContext({
 const LoginPanel = (props) => {
   let [inputName, setInputName] = useState("");
   let [inputPsw, setInputPsw] = useState("");
+  let [feedback, setFeedback] = useState(" ");
 
   let userList = props.users;
   let dest = "/";
@@ -34,10 +35,8 @@ const LoginPanel = (props) => {
   const getDest = () => {
 
     let filter = userList.filter(x => (x.name == inputName));
-    if (filter.length == 1) {
-      if (filter[0].password == inputPsw) {
-        dest += filter[0].role;
-      }
+    if ((filter.length == 1) && (filter[0].password == inputPsw)) {
+      dest += filter[0].role;
     }
 
     return dest;
@@ -47,16 +46,16 @@ const LoginPanel = (props) => {
   const OnLogIn = () => {
 
     let filter = userList.filter(x => (x.name == inputName));
-    if (filter.length == 1) {
-      if (filter[0].password == inputPsw) {
-        props.setID({ 'userID': filter[0].id });
-      }
+    if ((filter.length == 1) && (filter[0].password == inputPsw)) {
+      props.setID({ 'userID': filter[0].id });
+    } else {
+      setFeedback("The username does not exist, or the password is inccorect.");
     }
   }
 
   return (
     <Paper sx={{ height: "30vmax", width: "30vmax", margin: "5px" }}>
-      <Grid container sx={{ height: "100%", padding: "5px" }} direction="column" justifyContent="space-between" alignItems="stretch">
+      <Grid container sx={{ height: "90%", padding: "5px" }} direction="column" justifyContent="space-between" alignItems="stretch">
         <Grid item>
           <Typography variant='h4' component='h4'>
             Log In
@@ -76,6 +75,17 @@ const LoginPanel = (props) => {
         </Grid>
 
       </Grid>
+
+
+      <Grid container sx={{ height: "10%", padding: "5px" }} direction="column" justifyContent="space-between" alignItems="stretch">
+        <Grid item>
+          <Typography variant='body1' component='p'>
+            {feedback}
+          </Typography>
+        </Grid>
+      </Grid>
+
+
     </Paper>
   );
 }
@@ -84,12 +94,18 @@ const RegisterPanel = (props) => {
 
   let [inputName, setInputName] = useState("");
   let [inputPsw, setInputPsw] = useState("");
+  let [inputAddress, setInputAddress] = useState("");
   let [inputConfirmPsw, setInputConfirmPsw] = useState("");
+  let [feedback, setFeedback] = useState(" ");
 
   let userList = props.users;
 
   const OnNameChange = (e) => {
     setInputName(e.target.value);
+  }
+
+  const OnAddressChange = (e) => {
+    setInputAddress(e.target.value);
   }
 
   const OnPswChange = (e) => {
@@ -102,27 +118,46 @@ const RegisterPanel = (props) => {
 
   const OnRegister = () => {
 
-    if (inputPsw == inputConfirmPsw) {
+    const spaceRegex = new RegExp('^(\s)*$');
 
-      let filter = userList.filter(x => (x.name == inputName));
-      if (filter.length == 0) {
-        let id = userList.length + 1;
-        userList.push({
-          id,
-          name: inputName,
-          role: "Member",
-          password: inputPsw
-        })
 
-        props.setUsers(userList);
 
-        jsonDB.post("/users", {
-          name: inputName,
-          role: "Member",
-          password: inputPsw
-        })
+    if (!spaceRegex.test(inputName)) {
+      if (!spaceRegex.test(inputAddress)) {
+        if ((!spaceRegex.test(inputPsw)) && (inputPsw == inputConfirmPsw)) {
+
+          let filter = userList.filter(x => (x.name == inputName));
+          if (filter.length == 0) {
+            let id = userList.length + 1;
+            userList.push({
+              id,
+              name: inputName,
+              role: "Member",
+              password: inputPsw
+            })
+
+            props.setUsers(userList);
+
+            jsonDB.post("/users", {
+              name: inputName,
+              role: "Member",
+              password: inputPsw
+            })
+
+            setFeedback(" ");
+
+          } else {
+            setFeedback("User already exist.");
+          }
+
+        } else {
+          setFeedback("Please confirm your password.");
+        }
+      } else {
+        setFeedback("Address may not be blank.");
       }
-
+    } else {
+      setFeedback("Username may not be blank.");
     }
 
   }
@@ -130,7 +165,7 @@ const RegisterPanel = (props) => {
   return (
     <Paper sx={{ height: "30vmax", width: "30vmax", margin: "5px" }}>
 
-      <Grid container sx={{ height: "100%", padding: "5px" }} direction="column" justifyContent="space-between" alignItems="stretch">
+      <Grid container sx={{ height: "90%", padding: "5px" }} direction="column" justifyContent="space-between" alignItems="stretch">
         <Grid item>
           <Typography variant='h4' component='h4'>
             Register
@@ -139,6 +174,10 @@ const RegisterPanel = (props) => {
 
         <Grid item>
           <TextField sx={{ width: "100%" }} required variant='standard' label='User Name' onChange={OnNameChange} value={inputName} />
+        </Grid>
+
+        <Grid item>
+          <TextField sx={{ width: "100%" }} required variant='standard' label='Address' onChange={OnAddressChange} value={inputAddress} />
         </Grid>
 
         <Grid item>
@@ -155,6 +194,14 @@ const RegisterPanel = (props) => {
           <Button variant='contained' onClick={OnRegister}>Register</Button>
         </Grid>
 
+      </Grid>
+
+      <Grid container sx={{ height: "10%", padding: "5px" }} direction="column" justifyContent="space-between" alignItems="stretch">
+        <Grid item>
+          <Typography variant='body1' component='p'>
+            {feedback}
+          </Typography>
+        </Grid>
       </Grid>
 
     </Paper>
