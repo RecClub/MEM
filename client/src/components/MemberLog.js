@@ -11,15 +11,15 @@ import jsonDB from "../apis/jsonDB";
 const MemberLog = () => {
   let [users, setUsers] = useState();
 
-  const [value, setValue] = React.useState("");
+  const [classID, setValue] = React.useState(1);
 
   const handleChange = (event) => {
-    setValue(event.target.value);
+    setValue(parseInt(event.target.value));
   };
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const data = await jsonDB.get("/classlog");
+      const data = await jsonDB.get("/users");
       setUsers(data.data);
     };
 
@@ -28,15 +28,21 @@ const MemberLog = () => {
 
   if (!users) return <div>Loading...</div>;
 
+
+  let filterlist = users.filter( x => {
+    if(!("class" in x)) return false;
+    return (classID in x.class);
+  } )
+  
+  filterlist = filterlist.map(x => {x.paid = x.class[classID] ? "Yes" : "No"; return x})
+
   let gridData = {
     columns: [
       { field: "id", hide: true },
-      { field: "attending", headerName: "Attending" },
-      { field: "phonenum", headerName: "Phone Number" },
-      { field: "paid", headerName: "Paid" },
-      { field: "address", headerName: "Address" },
+      { field: "name", headerName: "Name" },
+      { field: "paid", headerName: "Paid" }
     ],
-    rows: users,
+    rows: filterlist,
   };
 
   return (
@@ -45,12 +51,12 @@ const MemberLog = () => {
         <FormControl fullWidth>
           <InputLabel>Classes</InputLabel>
           <Select
-            value={value}
+            value={classID}
             onChange={handleChange}
           >
-            <MenuItem value={10}>Class 1</MenuItem>
-            <MenuItem value={20}>Class 2</MenuItem>
-            <MenuItem value={30}>Class 3</MenuItem>
+            <MenuItem value={1}>Class 1</MenuItem>
+            <MenuItem value={2}>Class 2</MenuItem>
+            <MenuItem value={3}>Class 3</MenuItem>
           </Select>
         </FormControl>
 
