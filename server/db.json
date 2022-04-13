@@ -28,8 +28,8 @@
       "name": "Nathan2",
       "role": "Coach",
       "class": {
-        "1": true,
-        "3": true
+        "2": true,
+        "3": false
       },
       "password": "asd"
     }
