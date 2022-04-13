@@ -8,7 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import TextField from '@mui/material/TextField';
 
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 
 const defaultValues = {
   type: "",
