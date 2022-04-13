@@ -23,6 +23,26 @@
       "id": 3
     }
   ],
+  "classes" : [
+    {
+      "id": 1,
+      "name": "C++ class",
+      "startDate": "2022-04-22T00:47:39.834Z",
+      "duration": "2 hrs"
+    },
+    {
+      "id": 2,
+      "name": "Javascript class",
+      "startDate": "2022-04-22T00:47:39.834Z",
+      "duration": "2 hrs"
+    },
+    {
+      "id": 3,
+      "name": "MineCraft class",
+      "startDate": "2022-04-22T00:47:39.834Z",
+      "duration": "2 hrs"
+    }
+  ],
   "user_messages": [
     {
       "messages": [
