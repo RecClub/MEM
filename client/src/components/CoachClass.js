@@ -7,16 +7,43 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const CoachClass = () => {
     let [users, setUsers] = useState();
     let [classes, setClasses] = useState();
     let [coaches, setCoaches] = useState();
     const [coachID, setCoachID] = React.useState(1);
+    let [selectedClasses, setselectedClasses] = useState([]);
 
     const handleChange = (event) => {
         setCoachID(parseInt(event.target.value));
       };
+
+
+    const handleClassSelectionChange = (ids) => {
+        if (!ids) return;
+        const selectedIDs = new Set(ids);
+        setselectedClasses(classes.filter((classes) => selectedIDs.has(classes.id)));
+      };
+
+      const handleDeleteCoach = async () => {
+          
+        const coach = users.find((user) => user.id == coachID)
+        let newClass = {};
+        Object.entries(coach.class).forEach(([k,v]) => {
+            if(!selectedClasses.find((x) => k == x.id)){
+              newClass[k] = v
+            }
+           })
+
+        
+        coach.class = newClass
+        let promises =  jsonDB.put(`/users/${coach.id}`, coach);
+
+        Promise.all(promises);
+        window.location.reload(false);
+    }
 
 
 
@@ -91,9 +118,14 @@ return (
         </FormControl>
         <DataGrid
           autoHeight
+          checkboxSelection={true}
           components={{ Toolbar: GridToolbar }}
+          onSelectionModelChange={handleClassSelectionChange}
           {...gridData}
         />
+            <Button variant="contained" endIcon={<DeleteIcon /> } onClick={handleDeleteCoach} >
+                Delete
+            </Button>
       </div>
     </div>
   );
