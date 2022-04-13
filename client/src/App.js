@@ -10,13 +10,14 @@ import MainPage from './pages/MainPage';
 import CoachPortal from './pages/CoachPortal';
 import MemberPortal from './pages/MemberPortal';
 import TreasurerPortal from './pages/TreasurerPortal';
+import PrivateRoute from './components/PrivateRoute';
 import { UserStore } from './contexts/UserContext';
 
 function App() {
   const theme = createTheme({
     palette: {
       mode: useDarkMode() ? 'dark' : 'light',
-    },
+    }
   });
 
   return (
@@ -28,9 +29,9 @@ function App() {
             <AppBar />
             <Routes>
               <Route path="/" element={<MainPage />} />
-              <Route path="/Coach" element={<CoachPortal />} />
-              <Route path="/Member" element={<MemberPortal />} />
-              <Route path="/Treasurer" element={<TreasurerPortal />} />
+              <Route path="/Coach" element={<PrivateRoute><CoachPortal /></PrivateRoute>} />
+              <Route path="/Member" element={<PrivateRoute><MemberPortal /></PrivateRoute>} />
+              <Route path="/Treasurer" element={<PrivateRoute><TreasurerPortal /></PrivateRoute>} />
             </Routes>
           </BrowserRouter>
         </ThemeProvider>

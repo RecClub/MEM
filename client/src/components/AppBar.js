@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import AppBar from '@mui/material/AppBar';
@@ -14,15 +14,41 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Badge from '@mui/material/Badge';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+
+import userContext from '../contexts/UserContext';
+import jsonDB from '../apis/jsonDB';
 
 const pages = ['Coach', 'Member', 'Treasurer'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [anchorElNotifications, setAnchorElNotifications] = useState(null);
   let navigate = useNavigate();
+  let [notifications, setNotifications] = useState([]);
+  let { userID, setUserID, user } = useContext(userContext);
+
+  useEffect(() => {
+    if (!userID.userID) return;
+
+    const fetchNotifications = async () => {
+      const data = await jsonDB.get(`user_messages/${userID.userID}`);
+      let messages = data.data.messages;
+      messages.sort((message1, message2) => new Date(message2.date) - new Date(message1.date));
+      setNotifications(data.data.messages);
+    };
+
+    fetchNotifications();
+
+    const fetchInterval = setInterval(fetchNotifications, 10000);
+    return () => {
+      clearInterval(fetchInterval);
+    };
+  }, [userID]);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -41,6 +67,23 @@ const ResponsiveAppBar = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleOpenNotifications = async (event) => {
+    setAnchorElNotifications(event.currentTarget);
+    setNotifications(notifications.map((notification) => {notification.read = true; return notification }));
+    let data = await jsonDB.get(`/user_messages/${user.id}`);
+    data.data.messages = notifications;
+    await jsonDB.patch(`/user_messages/${user.id}`, data.data);
+  };
+
+  const unreadNotifications = () => {
+    if (notifications.length === 0) return 0;
+    return notifications.filter(notification => !notification.read).length;
+  }
+
+  const handleCloseNotifications = (event) => {
+    setAnchorElNotifications(null);
   };
 
   return (
@@ -112,11 +155,50 @@ const ResponsiveAppBar = () => {
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="error">
+            <IconButton
+              onClick={handleOpenNotifications}
+              size="large"
+              aria-label="show 17 new notifications"
+              color="inherit"
+            >
+              <Badge badgeContent={unreadNotifications()} color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+            <Menu
+              sx={{ mt: '45px', maxWidth: '300px' }}
+              id="menu-appbar"
+              anchorEl={anchorElNotifications}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElNotifications)}
+              onClose={handleCloseNotifications}
+            >
+              {notifications.map((notification) => (
+                <MenuItem key={notification.date+notification.sender} sx={{ textOverflow: 'ellipsis' }}>
+                  <Box sx={{ maxWidth: 275 }}>
+                    <CardContent>
+                      <Typography style={{ wordWrap: "break-word", whiteSpace: "break-spaces"}} color="text.secondary" gutterBottom>
+                        {notification.message}
+                      </Typography>
+                      <Typography sx={{ fontSize: 12 }} color="text.secondary">
+                        {new Date(notification.date).toLocaleString()}
+                      </Typography>
+                      <Typography sx={{ fontSize: 12 }} color="text.secondary">
+                        From: {notification.sender}
+                      </Typography>
+                    </CardContent>
+                  </Box>
+                </MenuItem>
+              ))}
+            </Menu>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />

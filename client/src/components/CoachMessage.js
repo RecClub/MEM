@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import TextField from '@mui/material/TextField';
@@ -12,8 +12,10 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 import jsonDB from '../apis/jsonDB';
+import userContext from '../contexts/UserContext';
 
 const CoachMessage = () => {
+  let loggedInUser = useContext(userContext).user;
   let [users, setUsers] = useState();
   let [selectedUsers, setSelectedUsers] = useState([]);
   let [textValue, setTextValue] = useState('');
@@ -36,7 +38,7 @@ const CoachMessage = () => {
       const data = await jsonDB.get(`/user_messages/${user.id}`);
       const user_messages = data.data;
 
-      user_messages.messages = [...user_messages.messages, { message, date: new Date() }];
+      user_messages.messages = [...user_messages.messages, { message, date: new Date(), sender: loggedInUser.name, senderID: loggedInUser.id, read: false}];
       jsonDB.put(`/user_messages/${user.id}`, user_messages);
     });
 
