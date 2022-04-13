@@ -25,7 +25,12 @@ const Payment = () => {
   let { user } = useContext(userContext);
 
   const fetchClasses = useCallback (async () => {
-    if (!user || !('class' in user)) return;
+    if (!user) return;
+
+    if (!('class' in user)) {
+      setClasses([]);
+      return;
+    };
 
     let promises = Object.entries(user.class).map(([id, paid]) => jsonDB.get(`/classes/${id}`));
     let values = await Promise.all(promises);
