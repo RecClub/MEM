@@ -88,20 +88,12 @@
       "debtPriority": "N/A"
     },
     {
-      "id": 5,
       "debtType": "C++ Hall",
       "status": "Paid",
       "debtAmount": "$2222",
-      "debtStartDate": "2022-03-30",
-      "debtPriority": "3"
-    },
-    {
-      "debtType": "test",
-      "status": "Paid",
-      "debtAmount": "$2555",
       "debtStartDate": "2022-03-25",
-      "debtPriority": "2",
-      "id": 6
+      "debtPriority": "3",
+      "id": 5
     }
   ],
   "user_messages": [

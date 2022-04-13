@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, useCallback } from 'react';
 
 import jsonDB from '../apis/jsonDB';
 import userContext from '../contexts/UserContext';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 // will deal w later
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
@@ -21,6 +22,7 @@ const UnpaidDebt = () => {
 
   const [debt, setDebt] = React.useState([]);
   const [formValues, setFormValues] = useState(defaultValues);
+  let [selectedDebt, setSelectedDebt] = useState([]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -30,6 +32,21 @@ const UnpaidDebt = () => {
     });
   };
 
+  const handleSelectionChange = (ids) => {
+    if (!ids) return;
+    const selectedIDs = new Set(ids);
+    setSelectedDebt(debt.filter((user) => selectedIDs.has(user.id)));
+  };
+
+  const handleDeleteDebt = async () => {
+    let promises = selectedDebt.map((user) => {
+        return jsonDB.delete(`/debt/${user.id}`);
+    });
+    // handleSendMessage();
+    await Promise.all(promises);
+    window.location.reload(false);
+}
+
   const handleSubmit = (event) => {
     event.preventDefault();
     jsonDB.post("/debt", {
@@ -38,18 +55,19 @@ const UnpaidDebt = () => {
       debtAmount: formValues.amount,
       debtStartDate: formValues.date,
       debtPriority: formValues.priority
-    })    
+    });
+    window.location.reload(false);    
   };
 
   useEffect(() => {
     // add sort based on priority
     const fetchDebt = async () => {
       const data = await jsonDB.get("/debt");
+      console.log(data.data);
       setDebt(
         data.data
       );
     };
-
     fetchDebt();
   }, []);
 
@@ -71,8 +89,12 @@ const UnpaidDebt = () => {
       <DataGrid
           autoHeight
           components={{ Toolbar: GridToolbar }}
+          onSelectionModelChange={handleSelectionChange}
           {...gridData}
         />
+        <Button variant="contained" endIcon={<DeleteIcon /> } onClick={handleDeleteDebt} >
+                        Delete
+                     </Button>
         
         <div style={{marginTop: '2%', display: 'flex'}}>
           <form style={{display: 'flex'}} onSubmit={handleSubmit}>
