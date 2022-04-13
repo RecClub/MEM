@@ -4,21 +4,53 @@
       "id": 1,
       "name": "Nathan",
       "role": "Coach",
-      "class": {
-        "1": true,
-        "2": false
-      },
       "password": "asd"
     },
     {
       "id": 2,
       "name": "John",
       "role": "Member",
+      "class": {
+        "1": true,
+        "2": false,
+        "3": false,
+        "4": true,
+        "5": false,
+        "6": false,
+        "7": true,
+        "8": false,
+        "9": false,
+        "10": true,
+        "11": false,
+        "12": false,
+        "13": false,
+        "14": true,
+        "15": false,
+        "16": false
+      },
       "password": "asd"
     },
     {
       "name": "testbot",
       "role": "Member",
+      "class": {
+        "1": true,
+        "2": false,
+        "3": false,
+        "4": true,
+        "5": false,
+        "6": false,
+        "7": true,
+        "8": false,
+        "9": false,
+        "10": true,
+        "11": false,
+        "12": false,
+        "13": false,
+        "14": true,
+        "15": false,
+        "16": false
+      },
       "password": "123",
       "id": 3
     },
@@ -27,7 +59,22 @@
       "name": "Nathan2",
       "role": "Coach",
       "class": {
-        "1": true
+        "1": true,
+        "2": false,
+        "3": false,
+        "4": true,
+        "5": false,
+        "6": false,
+        "7": true,
+        "8": false,
+        "9": false,
+        "10": true,
+        "11": false,
+        "12": false,
+        "13": false,
+        "14": true,
+        "15": false,
+        "16": false
       },
       "password": "asd"
     }
@@ -58,7 +105,7 @@
       "debtType": "Coach Nathan Expenses",
       "status": "Unpaid",
       "debtAmount": "$452.44",
-      "debtStartDate": "2022-03-22T00:47:39.834Z",
+      "debtStartDate": "2022-03-22",
       "debtPriority": "1"
     },
     {
@@ -66,7 +113,7 @@
       "debtType": "Coach Nathan2 Expenses",
       "status": "Unpaid",
       "debtAmount": "$555.01",
-      "debtStartDate": "2022-03-26T00:47:39.834Z",
+      "debtStartDate": "2022-03-26",
       "debtPriority": "1"
     },
     {
@@ -74,7 +121,7 @@
       "debtType": "C++ Class Banquet Hall",
       "status": "Partially paid",
       "debtAmount": "$1155.11",
-      "debtStartDate": "2022-04-01T00:47:39.834Z",
+      "debtStartDate": "2022-04-01",
       "debtPriority": "2"
     },
     {
@@ -82,8 +129,16 @@
       "debtType": "MineCraft Class Banquet Hall",
       "status": "Fully paid",
       "debtAmount": "$705.42",
-      "debtStartDate": "2022-04-11T00:47:39.834Z",
+      "debtStartDate": "2022-04-11",
       "debtPriority": "N/A"
+    },
+    {
+      "debtType": "C++ Hall",
+      "status": "Paid",
+      "debtAmount": "$2222",
+      "debtStartDate": "2022-03-25",
+      "debtPriority": "3",
+      "id": 5
     }
   ],
   "user_messages": [
