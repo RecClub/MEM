@@ -129,40 +129,44 @@ const RegisterPanel = (props) => {
 
     if (!spaceRegex.test(inputName)) {
       if (!spaceRegex.test(inputAddress)) {
-        if ((!spaceRegex.test(inputPsw)) && (inputPsw == inputConfirmPsw)) {
+        if (!spaceRegex.test(inputPhone)) {
+          if ((!spaceRegex.test(inputPsw)) && (inputPsw == inputConfirmPsw)) {
 
-          let filter = userList.filter(x => (x.name == inputName));
-          if (filter.length == 0) {
-            let id = userList.length + 1;
-            userList.push({
-              id,
-              name: inputName,
-              phone: inputPhone,
-              address: inputAddress,
-              class: {},
-              role: "Member",
-              password: inputPsw
-            })
+            let filter = userList.filter(x => (x.name == inputName));
+            if (filter.length == 0) {
+              let id = userList.length + 1;
+              userList.push({
+                id,
+                name: inputName,
+                phone: inputPhone,
+                address: inputAddress,
+                class: {},
+                role: "Member",
+                password: inputPsw
+              })
 
-            props.setUsers(userList);
+              props.setUsers(userList);
 
-            jsonDB.post("/users", {
-              name: inputName,
-              phone: inputPhone,
-              address: inputAddress,
-              class: {},
-              role: "Member",
-              password: inputPsw
-            })
+              jsonDB.post("/users", {
+                name: inputName,
+                phone: inputPhone,
+                address: inputAddress,
+                class: {},
+                role: "Member",
+                password: inputPsw
+              })
 
-            setFeedback(" ");
+              setFeedback(" ");
+
+            } else {
+              setFeedback("User already exist.");
+            }
 
           } else {
-            setFeedback("User already exist.");
+            setFeedback("Please confirm your password.");
           }
-
         } else {
-          setFeedback("Please confirm your password.");
+          setFeedback("Phone number may not be blank.");
         }
       } else {
         setFeedback("Address may not be blank.");
@@ -177,6 +181,7 @@ const RegisterPanel = (props) => {
     <Paper sx={{ height: "30vmax", width: "30vmax", margin: "5px" }}>
 
       <Grid container sx={{ height: "90%", padding: "5px" }} direction="column" justifyContent="space-between" alignItems="stretch">
+
         <Grid item>
           <Typography variant='h4' component='h4'>
             Register
