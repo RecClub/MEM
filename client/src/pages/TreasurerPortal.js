@@ -3,6 +3,7 @@ import React from 'react';
 import MemberLog from '../components/MemberLog';
 
 import CoachList from '../components/CoachList';
+import UnpaidDebt from '../components/UnpaidDebt';
 
 const TreasurerPortal = () => {
   return (
@@ -11,6 +12,9 @@ const TreasurerPortal = () => {
       <MemberLog/>
       CoachList
       <CoachList/>
+      <br/>
+      UnpaidDebt
+      <UnpaidDebt/>
     </div>
   );
 };
