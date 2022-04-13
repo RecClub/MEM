@@ -49,6 +49,10 @@ const Payment = () => {
 
   const fetchAllClasses = useCallback(async () => {
     let data = await jsonDB.get('/classes');
+    data.data = data.data.map((value) => {
+      value.startDate = new Date(value.startDate).toLocaleString();
+      return value;
+    });
     setClasses(data.data);
   }, []);
 
@@ -99,7 +103,7 @@ const Payment = () => {
       if (!('class' in newUserInfo)) {
         newUserInfo.class = {};
       }
-      if (!(c in newUserInfo.class)){
+      if (!(c in newUserInfo.class)) {
         newUserInfo.class[c] = false;
       }
     });
@@ -140,7 +144,9 @@ const Payment = () => {
   }, [fetchAllClasses]);
 
   useEffect(() => {
-    if (!user || !classes || classes.length === 0) { return; }
+    if (!user || !classes || classes.length === 0) {
+      return;
+    }
 
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
@@ -155,10 +161,15 @@ const Payment = () => {
       let users = await jsonDB.get('/users');
       users = users.data;
       let classObj = classes.find((x) => parseInt(query.get('classID')) == x.id);
-      let message = `${user.name} (userID: ${user.id}) paid $${query.get('price')} for ${classObj.name} (classID: ${classObj.id})`;
-  
+      let message = `${user.name} (userID: ${user.id}) paid $${query.get('price')} for ${
+        classObj.name
+      } (classID: ${classObj.id})`;
+
       users.forEach(async (u) => {
-        if ((u.role === 'Coach' && 'class' in u && classObj.id in u.class) || u.role === 'Treasurer') {
+        if (
+          (u.role === 'Coach' && 'class' in u && classObj.id in u.class) ||
+          u.role === 'Treasurer'
+        ) {
           const data = await jsonDB.get(`/user_messages/${u.id}`);
           let user_messages = data.data;
 
