@@ -4,6 +4,7 @@ import MemberLog from '../components/MemberLog';
 
 import CoachList from '../components/CoachList';
 import UnpaidDebt from '../components/UnpaidDebt';
+import CoachClass from '../components/CoachClass';
 
 const TreasurerPortal = () => {
   return (
@@ -12,6 +13,8 @@ const TreasurerPortal = () => {
       <MemberLog/>
       CoachList
       <CoachList/>
+      CoachClass
+     <CoachClass/>
       <br/>
       UnpaidDebt
       <UnpaidDebt/>
