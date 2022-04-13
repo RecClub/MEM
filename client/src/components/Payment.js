@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import PaymentIcon from '@mui/icons-material/Payment';
+import TimeIcon from '@mui/icons-material/AccessTime';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Typography from '@mui/material/Typography';
 
 import paymentServer from '../apis/paymentServer';
 import jsonDB from '../apis/jsonDB';
@@ -19,29 +21,36 @@ const Payment = () => {
   const [messageTitle, setMessageTitle] = useState('');
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const [selectedClassID, setSelectedClassID] = React.useState();
+  const [selectedClasses, setSelectedClasses] = React.useState([]);
+  const [userClasses, setUserClasses] = React.useState([]);
   const [classes, setClasses] = React.useState([]);
 
   let navigate = useNavigate();
   let { user } = useContext(userContext);
 
-  const fetchClasses = useCallback (async () => {
+  const fetchUserClasses = useCallback(async () => {
     if (!user) return;
 
     if (!('class' in user)) {
-      setClasses([]);
+      setUserClasses([]);
       return;
-    };
+    }
 
     let promises = Object.entries(user.class).map(([id, paid]) => jsonDB.get(`/classes/${id}`));
     let values = await Promise.all(promises);
-    setClasses(
+    setUserClasses(
       values.map((value) => {
         value.data.startDate = new Date(value.data.startDate).toLocaleString();
-        value.data.paid = user.class[value.data.id] ? "Yes" : "No";
+        value.data.paid = user.class[value.data.id] ? 'Yes' : 'No';
         return value.data;
       })
     );
   }, [user]);
+
+  const fetchAllClasses = useCallback(async () => {
+    let data = await jsonDB.get('/classes');
+    setClasses(data.data);
+  }, []);
 
   const handleDialogOpen = () => setDialogOpen(true);
   const handleDialogClose = async () => {
@@ -55,62 +64,148 @@ const Payment = () => {
     setSelectedClassID(selected[0]);
   };
 
+  const handleSelectionChange2 = (selected) => {
+    if (!selected) return;
+    setSelectedClasses(selected);
+  };
+
   const handlePayment = async () => {
-    if (!user) return;
+    if (!user || !classes) return;
     let newUserInfo = await jsonDB.get(`users/${user.id}`);
     newUserInfo = newUserInfo.data;
 
-    if ("class" in newUserInfo && !newUserInfo.class[selectedClassID]) {
-      paymentServer.post(`/checkout?classID=${selectedClassID}&userID=${user.id}`).then((response) => {
-        window.location.href = response.data.checkoutURL;
-      });
+    let classObj = classes.find((x) => selectedClassID === x.id);
+
+    if ('class' in newUserInfo && !newUserInfo.class[selectedClassID]) {
+      paymentServer
+        .post(`/checkout?classID=${selectedClassID}&userID=${user.id}&price=${classObj.price}`)
+        .then((response) => {
+          window.location.href = response.data.checkoutURL;
+        });
     } else {
-      setMessage("You have already paid for this class!");
-      setMessageTitle("Payment Error");
+      setMessage('You have already paid for this class!');
+      setMessageTitle('Payment Error');
       handleDialogOpen();
     }
   };
 
-  useEffect(() => {
-    fetchClasses();
-  }, [user, fetchClasses]);
+  const handleEnroll = async () => {
+    if (!user) return;
+
+    let newUserInfo = await jsonDB.get(`users/${user.id}`);
+    newUserInfo = newUserInfo.data;
+
+    selectedClasses.map((c) => {
+      if (!('class' in newUserInfo)) {
+        newUserInfo.class = {};
+      }
+      if (!(c in newUserInfo.class)){
+        newUserInfo.class[c] = false;
+      }
+    });
+
+    await jsonDB.put(`/users/${user.id}`, newUserInfo);
+
+    let users = await jsonDB.get('/users');
+    users = users.data;
+    selectedClasses.forEach((c) => {
+      let classObj = classes.find((x) => x.id === c);
+      let message = `${user.name} (userID: ${user.id}) enrolled in ${classObj.name} (classID: ${classObj.id})`;
+
+      users.forEach(async (u) => {
+        if ((u.role === 'Coach' && 'class' in u && c in u.class) || u.role === 'Treasurer') {
+          const data = await jsonDB.get(`/user_messages/${u.id}`);
+          let user_messages = data.data;
+
+          user_messages.messages = [
+            ...user_messages.messages,
+            { message, date: new Date(), sender: user.name, senderID: user.id, read: false },
+          ];
+          jsonDB.put(`/user_messages/${u.id}`, user_messages);
+        }
+      });
+    });
+
+    setMessage('You have enrolled in the class!');
+    setMessageTitle('Enrollment Success');
+    handleDialogOpen();
+  };
 
   useEffect(() => {
+    fetchUserClasses();
+  }, [user, fetchUserClasses]);
+
+  useEffect(() => {
+    fetchAllClasses();
+  }, [fetchAllClasses]);
+
+  useEffect(() => {
+    if (!user || !classes || classes.length === 0) { return; }
+
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
     const paymentSuccess = async () => {
-      let user = await jsonDB.get(`users/${query.get('userID')}`)
+      let user = await jsonDB.get(`users/${query.get('userID')}`);
       user = user.data;
 
       user.class[query.get('classID')] = true;
       await jsonDB.put(`users/${query.get('userID')}`, user);
-      await fetchClasses();
+      await fetchUserClasses();
+
+      let users = await jsonDB.get('/users');
+      users = users.data;
+      let classObj = classes.find((x) => parseInt(query.get('classID')) == x.id);
+      let message = `${user.name} (userID: ${user.id}) paid $${query.get('price')} for ${classObj.name} (classID: ${classObj.id})`;
+  
+      users.forEach(async (u) => {
+        if ((u.role === 'Coach' && 'class' in u && classObj.id in u.class) || u.role === 'Treasurer') {
+          const data = await jsonDB.get(`/user_messages/${u.id}`);
+          let user_messages = data.data;
+
+          user_messages.messages = [
+            ...user_messages.messages,
+            { message, date: new Date(), sender: user.name, senderID: user.id, read: false },
+          ];
+          await jsonDB.put(`/user_messages/${u.id}`, user_messages);
+        }
+      });
 
       handleDialogOpen();
     };
 
     if (query.get('success')) {
-      setMessage('Order placed! You will receive an email confirmation.');
-      setMessageTitle("Payment Success");
+      setMessage('Order placed! Thank you very much :)');
+      setMessageTitle('Payment Success');
       paymentSuccess();
     }
 
     if (query.get('canceled')) {
       setMessage("Order canceled -- continue to shop around and checkout when you're ready.");
-      setMessageTitle("Payment Cancelled");
+      setMessageTitle('Payment Cancelled');
       handleDialogOpen();
     }
-  }, [fetchClasses]);
+  }, [user, classes, fetchUserClasses]);
 
   let gridData = {
     columns: [
       { field: 'id', hide: true },
-      { field: 'name', headerName: 'Name', width: "150" },
-      { field: 'startDate', headerName: 'Start Date', width: "200" },
+      { field: 'name', headerName: 'Name', width: '150' },
+      { field: 'startDate', headerName: 'Start Date', width: '200' },
       { field: 'duration', headerName: 'Duration' },
       { field: 'paid', headerName: 'Paid' },
     ],
-    rows: classes,
+    rows: userClasses,
+  };
+
+  let gridData2 = {
+    columns: [
+      { field: 'id', hide: true },
+      { field: 'name', headerName: 'Name', width: '150' },
+      { field: 'startDate', headerName: 'Start Date', width: '200' },
+      { field: 'duration', headerName: 'Duration' },
+      { field: 'paid', headerName: 'Paid' },
+    ],
+    rows: classes.filter((x) => !userClasses.find((y) => x.id === y.id)),
   };
 
   return (
@@ -123,9 +218,7 @@ const Payment = () => {
       >
         <DialogTitle id="alert-dialog-title">{messageTitle}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            {message}
-          </DialogContentText>
+          <DialogContentText id="alert-dialog-description">{message}</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleDialogClose} autoFocus>
@@ -134,6 +227,31 @@ const Payment = () => {
         </DialogActions>
       </Dialog>
 
+      <Typography sx={{ fontSize: 12 }} color="text.secondary">
+        All Available Classes
+      </Typography>
+      <div style={{ display: 'flex', maxWidth: 800, minHeight: 300 }}>
+        <DataGrid
+          autoHeight
+          checkboxSelection={true}
+          components={{ Toolbar: GridToolbar }}
+          onSelectionModelChange={handleSelectionChange2}
+          {...gridData2}
+        />
+      </div>
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        startIcon={<TimeIcon />}
+        onClick={handleEnroll}
+      >
+        Enroll in Class
+      </Button>
+
+      <Typography sx={{ fontSize: 12, marginTop: 5 }} color="text.secondary">
+        Your Scheduled Classes
+      </Typography>
       <div style={{ display: 'flex', maxWidth: 800, minHeight: 300 }}>
         <DataGrid
           autoHeight

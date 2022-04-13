@@ -4,7 +4,11 @@
       "id": 1,
       "name": "Nathan",
       "role": "Coach",
-      "password": "asd"
+      "password": "asd",
+      "class": {
+        "1": true,
+        "3": true
+      }
     },
     {
       "id": 2,
@@ -84,19 +88,22 @@
       "id": 1,
       "name": "C++ class",
       "startDate": "2022-04-22T00:47:39.834Z",
-      "duration": "2 hrs"
+      "duration": "2 hrs",
+      "price": "40"
     },
     {
       "id": 2,
       "name": "Javascript class",
       "startDate": "2022-04-22T00:47:39.834Z",
-      "duration": "2 hrs"
+      "duration": "3 hrs",
+      "price": "60"
     },
     {
       "id": 3,
       "name": "MineCraft class",
       "startDate": "2022-04-22T00:47:39.834Z",
-      "duration": "2 hrs"
+      "duration": "3 hrs",
+      "price": "60"
     }
   ],
   "debt": [
@@ -144,41 +151,7 @@
   "user_messages": [
     {
       "messages": [
-        {
-          "message": "hi Nathan",
-          "date": "2022-04-13T04:27:47.679Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": true
-        },
-        {
-          "message": "You suck",
-          "date": "2022-04-13T00:47:39.834Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": true
-        },
-        {
-          "message": "Akatsuki is amazing",
-          "date": "2022-04-13T00:46:58.582Z",
-          "sender": "Nathan",
-          "senderID": 1,
-          "read": true
-        },
-        {
-          "message": "Your mother was a furloc",
-          "date": "2022-04-13T00:41:42.362Z",
-          "sender": "Nathan",
-          "senderID": 1,
-          "read": true
-        },
-        {
-          "message": "asdasd",
-          "date": "2022-04-13T00:26:57.719Z",
-          "sender": "Nathan",
-          "senderID": 1,
-          "read": true
-        }
+        
       ],
       "id": 1
     },
@@ -206,6 +179,16 @@
           "senderID": 2,
           "read": false
         }
+      ]
+    },
+    {
+      "id": 3,
+      "messages": []
+    },
+    {
+      "id": 4,
+      "messages": [
+        
       ]
     }
   ]
