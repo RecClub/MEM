@@ -21,6 +21,16 @@
       "role": "Member",
       "password": "123",
       "id": 3
+    },
+    {
+      "id": 4,
+      "name": "Nathan2",
+      "role": "Coach",
+      "class": {
+        "1": true,
+        "3": false
+      },
+      "password": "asd"
     }
   ],
   "classes": [
@@ -79,7 +89,22 @@
     },
     {
       "id": 2,
-      "messages": []
+      "messages": [
+        {
+          "message": "test",
+          "date": "2022-04-13T04:20:32.983Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "bob",
+          "date": "2022-04-13T03:04:16.378Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        }
+      ]
     }
   ]
 }
