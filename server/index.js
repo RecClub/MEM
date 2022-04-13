@@ -22,7 +22,7 @@ app.post('/checkout', async (req, res) => {
       },
     ],
     mode: 'payment',
-    success_url: `${CLIENT_DOMAIN}/Member?success=true`,
+    success_url: `${CLIENT_DOMAIN}/Member?success=true&userID=${req.query.userID}&classID=${req.query.classID}`,
     cancel_url: `${CLIENT_DOMAIN}/Member?canceled=true`,
   });
   

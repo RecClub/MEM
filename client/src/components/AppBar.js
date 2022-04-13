@@ -22,7 +22,7 @@ import userContext from '../contexts/UserContext';
 import jsonDB from '../apis/jsonDB';
 
 const pages = ['Coach', 'Member', 'Treasurer'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Logout'];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -59,6 +59,14 @@ const ResponsiveAppBar = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const handleLogOut = () => {
+    if (userID.userID === "") return;
+    
+    setAnchorElNav(null);
+    navigate("/");
+    setUserID({"userID": ""});
   };
 
   const handleMenuItemClick = (page) => {
@@ -221,7 +229,7 @@ const ResponsiveAppBar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={handleLogOut}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}

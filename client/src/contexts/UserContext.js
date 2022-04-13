@@ -5,11 +5,13 @@ import jsonDB from '../apis/jsonDB';
 const Context = React.createContext({'userID': ""});
 
 export const UserStore = (props) => {
-  const [userID, setUserID] = useState({'userID': ""});
+  const [userID, setUserID] = useState({'userID': localStorage.getItem("userID")});
   const [user, setUser] = useState({});
 
   let id = userID.userID;
   useEffect(() => {
+    localStorage.setItem("userID", id);
+
     const fetchUser = async () => {
       let id = userID.userID;
       if (!id) return;

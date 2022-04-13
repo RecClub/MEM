@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
@@ -15,55 +16,86 @@ import userContext from '../contexts/UserContext';
 
 const Payment = () => {
   const [message, setMessage] = useState('');
+  const [messageTitle, setMessageTitle] = useState('');
   const [dialogOpen, setDialogOpen] = React.useState(false);
-  const [selectedClass, setSelectedClass] = React.useState();
-  const [classes, setClasses] = React.useState();
+  const [selectedClassID, setSelectedClassID] = React.useState();
+  const [classes, setClasses] = React.useState([]);
 
-  const handleDialogOpen = () => setDialogOpen(true);
-  const handleDialogClose = () => setDialogOpen(false);
-
-  const handleSelectionChange = (id) => {
-    if (!id) return;
-    console.log(id);
-  };
-
-  const handlePayment = () => {
-    paymentServer.post('/checkout').then((response) => {
-      window.location.href = response.data.checkoutURL;
-    });
-  };
-
+  let navigate = useNavigate();
   let { user } = useContext(userContext);
-  useEffect(() => {
+
+  const fetchClasses = useCallback (async () => {
     if (!user || !('class' in user)) return;
 
-    const fetchClasses = async () => {
-      let promises = Object.entries(user.class).map(([id, paid]) => jsonDB.get(`/classes/${id}`));
-      let values = await Promise.all(promises);
-      setClasses(
-        values.map((value) => {
-          value.data.startDate = new Date(value.data.startDate).toLocaleString();
-          value.data.paid = user.class[value.data.id] ? "Yes" : "No";
-          return value.data;
-        })
-      );
-    };
-
-    fetchClasses();
+    let promises = Object.entries(user.class).map(([id, paid]) => jsonDB.get(`/classes/${id}`));
+    let values = await Promise.all(promises);
+    setClasses(
+      values.map((value) => {
+        value.data.startDate = new Date(value.data.startDate).toLocaleString();
+        value.data.paid = user.class[value.data.id] ? "Yes" : "No";
+        return value.data;
+      })
+    );
   }, [user]);
+
+  const handleDialogOpen = () => setDialogOpen(true);
+  const handleDialogClose = async () => {
+    setDialogOpen(false);
+    navigate('/Member');
+    window.location.reload(false);
+  };
+
+  const handleSelectionChange = (selected) => {
+    if (!selected) return;
+    setSelectedClassID(selected[0]);
+  };
+
+  const handlePayment = async () => {
+    if (!user) return;
+    let newUserInfo = await jsonDB.get(`users/${user.id}`);
+    newUserInfo = newUserInfo.data;
+
+    if ("class" in newUserInfo && !newUserInfo.class[selectedClassID]) {
+      paymentServer.post(`/checkout?classID=${selectedClassID}&userID=${user.id}`).then((response) => {
+        window.location.href = response.data.checkoutURL;
+      });
+    } else {
+      setMessage("You have already paid for this class!");
+      setMessageTitle("Payment Error");
+      handleDialogOpen();
+    }
+  };
+
+  useEffect(() => {
+    fetchClasses();
+  }, [user, fetchClasses]);
 
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
+    const paymentSuccess = async () => {
+      let user = await jsonDB.get(`users/${query.get('userID')}`)
+      user = user.data;
+
+      user.class[query.get('classID')] = true;
+      await jsonDB.put(`users/${query.get('userID')}`, user);
+      await fetchClasses();
+
+      handleDialogOpen();
+    };
 
     if (query.get('success')) {
       setMessage('Order placed! You will receive an email confirmation.');
+      setMessageTitle("Payment Success");
+      paymentSuccess();
     }
 
     if (query.get('canceled')) {
       setMessage("Order canceled -- continue to shop around and checkout when you're ready.");
+      setMessageTitle("Payment Cancelled");
+      handleDialogOpen();
     }
-  }, []);
+  }, [fetchClasses]);
 
   let gridData = {
     columns: [
@@ -84,10 +116,10 @@ const Payment = () => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{'Message Sent'}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{messageTitle}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Your message has been sent!
+            {message}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -114,7 +146,6 @@ const Payment = () => {
       >
         Pay Now
       </Button>
-      {message}
     </div>
   );
 };
