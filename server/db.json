@@ -4,22 +4,53 @@
       "id": 1,
       "name": "Nathan",
       "role": "Coach",
-      "class": {
-        "1": true,
-        "2": false,
-        "3": false
-      },
       "password": "asd"
     },
     {
       "id": 2,
       "name": "John",
       "role": "Member",
+      "class": {
+        "1": true,
+        "2": false,
+        "3": false,
+        "4": true,
+        "5": false,
+        "6": false,
+        "7": true,
+        "8": false,
+        "9": false,
+        "10": true,
+        "11": false,
+        "12": false,
+        "13": false,
+        "14": true,
+        "15": false,
+        "16": false
+      },
       "password": "asd"
     },
     {
       "name": "testbot",
       "role": "Member",
+      "class": {
+        "1": true,
+        "2": false,
+        "3": false,
+        "4": true,
+        "5": false,
+        "6": false,
+        "7": true,
+        "8": false,
+        "9": false,
+        "10": true,
+        "11": false,
+        "12": false,
+        "13": false,
+        "14": true,
+        "15": false,
+        "16": false
+      },
       "password": "123",
       "id": 3
     },
@@ -28,8 +59,22 @@
       "name": "Nathan2",
       "role": "Coach",
       "class": {
-        "2": true,
-        "3": false
+        "1": true,
+        "2": false,
+        "3": false,
+        "4": true,
+        "5": false,
+        "6": false,
+        "7": true,
+        "8": false,
+        "9": false,
+        "10": true,
+        "11": false,
+        "12": false,
+        "13": false,
+        "14": true,
+        "15": false,
+        "16": false
       },
       "password": "asd"
     }
