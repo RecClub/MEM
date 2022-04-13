@@ -63,9 +63,7 @@
       "name": "Nathan2",
       "role": "Coach",
       "class": {
-        "1": true,
-        "2": false,
-        "3": false,
+        "2": true,
         "4": true,
         "5": false,
         "6": false,
@@ -354,6 +352,13 @@
         {
           "message": "Your scheduale has been changed",
           "date": "2022-04-13T23:23:25.265Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": false
+        },
+        {
+          "message": "Your scheduale has been changed",
+          "date": "2022-04-13T23:42:43.667Z",
           "sender": "John",
           "senderID": 2,
           "read": false

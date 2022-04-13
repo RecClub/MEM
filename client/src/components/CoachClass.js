@@ -39,9 +39,8 @@ const CoachClass = () => {
 
         
         coach.class = newClass
-        let promises =  jsonDB.put(`/users/${coach.id}`, coach);
+        await  jsonDB.put(`/users/${coach.id}`, coach);
 
-        Promise.all(promises);
         window.location.reload(false);
     }
 
