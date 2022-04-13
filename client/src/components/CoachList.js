@@ -29,7 +29,15 @@ const CoachList = () => {
 
     const handleDeleteCoach = async () => {
         let promises = selectedUsers.map((user) => {
-            return jsonDB.delete(`/users/${user.id}`);
+            let newClass = {};
+            Object.entries(user.class).forEach(([k,v]) =>{
+              if(!selectedClasses.find((x) => k == x.id)){
+                newClass[k] = v
+              }
+             })
+
+             user.class = newClass
+            return jsonDB.put(`/users/${user.id}`, user);
         });
         // handleSendMessage();
         await Promise.all(promises);
@@ -44,13 +52,13 @@ const CoachList = () => {
           });
           return jsonDB.put(`/users/${user.id}`,user)
       });
-      // handleSendMessage();
+      handleSendMessage();
       await Promise.all(promises);
       window.location.reload(false);
     }
 
     const handleSendMessage = async () => {
-      let message = "You have been removed from all you classes";
+      let message = "Your scheduale has been changed";
       // setTextValue('');
       selectedUsers.forEach(async (user) => {
         const data = await jsonDB.get(`/user_messages/${user.id}`);
@@ -113,16 +121,15 @@ const CoachList = () => {
       return (
             <div>
 
-            <DataGrid
+              <div style = {{display: "flex"}}>
+
+              <DataGrid
                 autoHeight
                 checkboxSelection={true}
                 components={{ Toolbar: GridToolbar }}
                 onSelectionModelChange={handleSelectionChange}
                 {...gridData}
             />
-                      <Button variant="contained" endIcon={<DeleteIcon /> } onClick={handleDeleteCoach} >
-                        Delete
-                     </Button>
 
                 <DataGrid
                 autoHeight
@@ -132,9 +139,15 @@ const CoachList = () => {
                 {...gridData2}
             />
 
+              </div>
+
+            
+                    
                       <Button variant="contained" endIcon={<PersonAddAlt1Icon /> } onClick={handleClasses} >
                         Assign Class
                      </Button>
+
+                    
 
             </div>
 
