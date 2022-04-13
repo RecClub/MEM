@@ -54,6 +54,40 @@
       "duration": "2 hrs"
     }
   ],
+  "debt": [
+    {
+      "id": 1,
+      "debtType": "Coach Nathan Expenses",
+      "status": "Unpaid",
+      "debtAmount": "$452.44",
+      "debtStartDate": "2022-03-22T00:47:39.834Z",
+      "debtPriority": "1"
+    },
+    {
+      "id": 2,
+      "debtType": "Coach Nathan2 Expenses",
+      "status": "Unpaid",
+      "debtAmount": "$555.01",
+      "debtStartDate": "2022-03-26T00:47:39.834Z",
+      "debtPriority": "1"
+    },
+    {
+      "id": 3,
+      "debtType": "C++ Class Banquet Hall",
+      "status": "Partially paid",
+      "debtAmount": "$1155.11",
+      "debtStartDate": "2022-04-01T00:47:39.834Z",
+      "debtPriority": "2"
+    },
+    {
+      "id": 4,
+      "debtType": "MineCraft Class Banquet Hall",
+      "status": "Fully paid",
+      "debtAmount": "$705.42",
+      "debtStartDate": "2022-04-11T00:47:39.834Z",
+      "debtPriority": "N/A"
+    }
+  ],
   "user_messages": [
     {
       "messages": [
