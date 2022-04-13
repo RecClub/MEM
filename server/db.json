@@ -6,6 +6,7 @@
       "role": "Coach",
       "class": {
         "1": true,
+        "2": false,
         "3": false
       },
       "password": "asd"
@@ -28,7 +29,7 @@
       "role": "Coach",
       "class": {
         "1": true,
-        "3": false
+        "3": true
       },
       "password": "asd"
     }
@@ -56,6 +57,13 @@
   "user_messages": [
     {
       "messages": [
+        {
+          "message": "hi Nathan",
+          "date": "2022-04-13T04:27:47.679Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
         {
           "message": "You suck",
           "date": "2022-04-13T00:47:39.834Z",
@@ -103,6 +111,13 @@
           "sender": "John",
           "senderID": 2,
           "read": true
+        },
+        {
+          "message": "hi bob",
+          "date": "2022-04-13T04:27:11.144Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": false
         }
       ]
     }
