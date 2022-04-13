@@ -11,9 +11,7 @@ const TreasurerPortal = () => {
     <div>
       TreasurerPortal
       <MemberLog/>
-      CoachList
       <CoachList/>
-      CoachClass
      <CoachClass/>
       <br/>
       UnpaidDebt

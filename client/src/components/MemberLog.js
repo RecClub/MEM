@@ -5,6 +5,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import Typography from '@mui/material/Typography';
 
 import jsonDB from "../apis/jsonDB";
 
@@ -47,9 +48,12 @@ const MemberLog = () => {
 
   return (
     <div>
+        <Typography sx={{ fontSize: 25 }} color="text.primary">
+                Check Paid or Unpaid Members
+        </Typography>
       <div style={{ display: "flex", maxWidth: 600, minHeight: 300 }}>
         <FormControl fullWidth>
-          <InputLabel>Classes</InputLabel>
+  
           <Select
             value={classID}
             onChange={handleChange}
