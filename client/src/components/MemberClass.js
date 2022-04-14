@@ -9,6 +9,7 @@ import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Typography from "@mui/material/Typography";
+import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 
 const MemberClass = () => { 
 
@@ -148,10 +149,10 @@ let gridData = {
         />
         <Button
           variant="contained"
-          endIcon={<DeleteIcon />}
+          endIcon={<PersonRemoveIcon />}
           onClick={handleDeleteMember}
         >
-          Unassign
+          Unassign Class
         </Button>
       </div>
     </div>

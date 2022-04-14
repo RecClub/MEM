@@ -11,8 +11,8 @@ const CoachPortal = () => {
   return (
     <div>
       <CoachMessage />
-      <MemberClass/>
       <MemberAssign/>
+      <MemberClass/>
     </div>
   );
 };
