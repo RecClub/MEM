@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import jsonDB from '../apis/jsonDB';
 import userContext from '../contexts/UserContext';
@@ -65,11 +65,11 @@ const UnpaidDebt = () => {
     event.preventDefault();
     let promises = selectedDebt.map((user) => {
       return jsonDB.put(`/debt/${user.id}`, {
-        debtType: formValues.type,
-        status: formValues.status,
-        debtAmount: formValues.amount,
-        debtStartDate: formValues.date,
-        debtPriority: formValues.priority
+        debtType: formValues.type || selectedDebt.length == 1 ? selectedDebt[0].debtType : "",
+        status: formValues.status || selectedDebt.length == 1 ? selectedDebt[0].status : "",
+        debtAmount: formValues.amount || selectedDebt.length == 1 ? selectedDebt[0].debtAmount : "",
+        debtStartDate: formValues.date || selectedDebt.length == 1 ? selectedDebt[0].debtStartDate : "",
+        debtPriority: formValues.priority || selectedDebt.length == 1 ? selectedDebt[0].debtPriority : ""
       });
     });
     await Promise.all(promises);
@@ -118,9 +118,15 @@ const UnpaidDebt = () => {
   return (
     <div style={{ display: 'inline' }}>
       <DataGrid
+          initialState={{
+            sorting: {
+              sortModel: [{ field: 'debtPriority', sort: 'asc' }],
+            },
+          }}
           autoHeight
           components={{ Toolbar: GridToolbar }}
           onSelectionModelChange={handleSelectionChange}
+          
           {...gridData}
         />
         <Button variant="contained" endIcon={<DeleteIcon /> } onClick={handleDeleteDebt} >
@@ -129,12 +135,14 @@ const UnpaidDebt = () => {
         <Button variant="contained" onClick={handleClickOpen}>
           Modify
         </Button>
-        <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Modify Debt Entry</DialogTitle>
+        <Dialog fullWidth={true} open={open} onClose={handleClose}>
+        <DialogTitle style={{textAlign: "center"}}>Modify Debt Entry</DialogTitle>
         <DialogContent>
           <form style={{display: 'inline'}} onSubmit={handleSubmit}>
+              <br/>
               <TextField
                 required
+                fullWidth={true}
                 name="type"
                 id="outlined-required"
                 label="Debt Type"
@@ -145,6 +153,7 @@ const UnpaidDebt = () => {
               <br/>
               <TextField
                 required
+                fullWidth={true}
                 name="status"
                 id="outlined-required"
                 label="Status"
@@ -155,6 +164,7 @@ const UnpaidDebt = () => {
               <br/>
               <TextField
                 required
+                fullWidth={true}
                 id="outlined-required"
                 label="Amount"
                 name="amount"
@@ -165,6 +175,7 @@ const UnpaidDebt = () => {
               <br/>
               <TextField
                 required
+                fullWidth={true}
                 id="outlined-required"
                 label="Start Date"
                 name="date"
@@ -175,6 +186,7 @@ const UnpaidDebt = () => {
               <br/>
               <TextField
                 required
+                fullWidth={true}
                 id="outlined-required"
                 label="Priority"
                 name="priority"
@@ -184,8 +196,8 @@ const UnpaidDebt = () => {
             </form>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit" onClick={handleSubmit2}>Modify</Button>
+          <Button style={{color: "#fff"}} onClick={handleClose}>Cancel</Button>
+          <Button style={{color: "#fff"}} type="submit" onClick={handleSubmit2}>Modify</Button>
         </DialogActions>
       </Dialog>
         
