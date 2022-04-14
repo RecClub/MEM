@@ -43,7 +43,7 @@ const MemberLog = () => {
 
   for (let i = 1; i < users.length; i++) {
     //Check the number of times paid
-    if (users.role == "Member") {
+    if (users.role === "Member") {
       for (let j = 1; j < users.class.length; j++) {
         if (users.class[j]) {
           nump++;
@@ -62,7 +62,7 @@ const MemberLog = () => {
     } else {
       users.penalty = "No";
     }
-    if (nump == users.class.length && users.class.length > 16) {
+    if (nump === users.class.length && users.class.length > 16) {
       users.discount = "Yes";
     }
   }
@@ -74,6 +74,7 @@ const MemberLog = () => {
       { field: "name", headerName: "Name" },
       { field: "paid", headerName: "Paid" },
       { field: "attendance", headerName: "Attendance" },
+      { field: "nump", headerName: "Number of Times Paid" },
     ],
     rows: filterlist,
   };
