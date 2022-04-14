@@ -17,6 +17,7 @@ let [selectedMember, setSelectedMember] = useState([]);
 const [classID, setClassID] = React.useState(1);
 let [classList, setClassList] = useState();
 let [member, setMember] = useState();
+let loggedInUser = useContext(userContext).user;
 
 const handleChange = (event) => {
     setClassID(parseInt(event.target.value));
@@ -44,9 +45,32 @@ const handleDeleteMember = async () => {
         user.class = newClass;
         return jsonDB.put(`/users/${user.id}`, user);
       });
-
+      handleSendMessage();
       await Promise.all(promises);
       window.location.reload(false);
+};
+
+const handleSendMessage = async () => {
+  let message = "You have been removed from a class";
+  // setTextValue('');
+  selectedMember.forEach(async (user) => {
+    const data = await jsonDB.get(`/user_messages/${user.id}`);
+    const user_messages = data.data;
+
+    user_messages.messages = [
+      ...user_messages.messages,
+      {
+        message,
+        date: new Date(),
+        sender: loggedInUser.name,
+        senderID: loggedInUser.id,
+        read: false,
+      },
+    ];
+    jsonDB.put(`/user_messages/${user.id}`, user_messages);
+  });
+
+  // handleDialogOpen();
 };
 
 

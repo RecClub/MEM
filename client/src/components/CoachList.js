@@ -58,7 +58,7 @@ const CoachList = () => {
   };
 
   const handleSendMessage = async () => {
-    let message = "Your scheduale has been changed";
+    let message = "You have been assigned to a new class";
     // setTextValue('');
     selectedUsers.forEach(async (user) => {
       const data = await jsonDB.get(`/user_messages/${user.id}`);

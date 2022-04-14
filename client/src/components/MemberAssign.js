@@ -14,7 +14,7 @@ const MemberAssign = () => {
     let [selectedMembers, setSelectedMembers] = useState([]);
     let [selectedClasses, setselectedClasses] = useState([]);
     let [classes, setClasses] = useState();
-
+    let loggedInUser = useContext(userContext).user;
 
     
   const handleSelectionChange = (ids) => {
@@ -40,9 +40,32 @@ const MemberAssign = () => {
       });
       return jsonDB.put(`/users/${user.id}`, user);
     });
-    // handleSendMessage();
+    handleSendMessage();
     await Promise.all(promises);
     window.location.reload(false);
+  };
+
+  const handleSendMessage = async () => {
+    let message = "You have been assigned to a new class";
+    // setTextValue('');
+    selectedMembers.forEach(async (user) => {
+      const data = await jsonDB.get(`/user_messages/${user.id}`);
+      const user_messages = data.data;
+
+      user_messages.messages = [
+        ...user_messages.messages,
+        {
+          message,
+          date: new Date(),
+          sender: loggedInUser.name,
+          senderID: loggedInUser.id,
+          read: false,
+        },
+      ];
+      jsonDB.put(`/user_messages/${user.id}`, user_messages);
+    });
+
+    // handleDialogOpen();
   };
 
   useEffect(() => {
