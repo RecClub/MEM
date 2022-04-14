@@ -8,16 +8,16 @@ import userContext from '../contexts/UserContext';
 
 const PrivateRoute = (props) => {
   const { children } = props
-  let {userID, setUserID} = useContext(userContext);
+  let {userID, setUserID, user} = useContext(userContext);
   const isLoggedIn = userID.userID !== "";
   const location = useLocation()
 
-  return isLoggedIn ? (
+  return isLoggedIn && `/${user.role}` == location.pathname ? (
     <>{children}</>
   ) : (
     <Navigate
       replace={true}
-      to="/"
+      to={isLoggedIn ? `/${user.role}` : "/"}
       state={{ from: `${location.pathname}${location.search}` }}
     />
   )

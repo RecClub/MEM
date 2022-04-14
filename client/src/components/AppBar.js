@@ -104,7 +104,7 @@ const ResponsiveAppBar = () => {
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-            <Link to="/">RecClub</Link>
+            RecClub
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -136,7 +136,7 @@ const ResponsiveAppBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
+              {pages.filter((page) => page === user.role).map((page) => (
                 <MenuItem key={page} onClick={() => handleMenuItemClick(page)}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
@@ -152,7 +152,7 @@ const ResponsiveAppBar = () => {
             <Link to="/">RecClub</Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {pages.filter((page) => page === user.role).map((page) => (
               <Button
                 key={page}
                 onClick={() => handleMenuItemClick(page)}
