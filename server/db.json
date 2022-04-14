@@ -22,21 +22,8 @@
       "role": "Member",
       "class": {
         "1": true,
-        "2": false,
-        "3": false,
-        "4": true,
-        "5": false,
-        "6": false,
-        "7": true,
-        "8": false,
-        "9": false,
-        "10": true,
-        "11": false,
-        "12": false,
-        "13": false,
-        "14": true,
-        "15": false,
-        "16": false
+        "2": true,
+        "3": true
       },
       "password": "asd"
     },
@@ -45,21 +32,8 @@
       "role": "Member",
       "class": {
         "1": true,
-        "2": false,
-        "3": false,
-        "4": true,
-        "5": false,
-        "6": false,
-        "7": true,
-        "8": false,
-        "9": false,
-        "10": true,
-        "11": false,
-        "12": false,
-        "13": false,
-        "14": true,
-        "15": false,
-        "16": false
+        "2": true,
+        "3": true
       },
       "password": "123",
       "id": 3
@@ -69,20 +43,8 @@
       "name": "Nathan2",
       "role": "Coach",
       "class": {
-        "2": true,
-        "4": true,
-        "5": false,
-        "6": false,
-        "7": true,
-        "8": false,
-        "9": false,
-        "10": true,
-        "11": false,
-        "12": false,
-        "13": false,
-        "14": true,
-        "15": false,
-        "16": false
+        "1": true,
+        "2": true
       },
       "password": "asd"
     }
@@ -120,20 +82,20 @@
       "debtPriority": "1"
     },
     {
-      "id": 2,
       "debtType": "Coach Nathan2 Expenses",
       "status": "Unpaid",
-      "debtAmount": "$555.01",
-      "debtStartDate": "2022-03-26",
-      "debtPriority": "1"
+      "debtAmount": "$2555",
+      "debtStartDate": "2022-03-25",
+      "debtPriority": "1",
+      "id": 2
     },
     {
-      "id": 3,
-      "debtType": "C++ Class Banquet Hall",
-      "status": "Partially paid",
-      "debtAmount": "$1155.11",
-      "debtStartDate": "2022-04-01",
-      "debtPriority": "2"
+      "debtType": "Coach Sher Expenses",
+      "status": "Unpaid",
+      "debtAmount": "$4422",
+      "debtStartDate": "2022-04-05",
+      "debtPriority": "2",
+      "id": 3
     },
     {
       "id": 4,
@@ -142,14 +104,6 @@
       "debtAmount": "$705.42",
       "debtStartDate": "2022-04-11",
       "debtPriority": "N/A"
-    },
-    {
-      "debtType": "C++ Hall",
-      "status": "Paid",
-      "debtAmount": "$2222",
-      "debtStartDate": "2022-03-25",
-      "debtPriority": "3",
-      "id": 5
     }
   ],
   "user_messages": [
@@ -232,6 +186,48 @@
       "id": 2,
       "messages": [
         {
+          "message": "You have been assigned to a new class",
+          "date": "2022-04-14T15:04:46.883Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "You have been removed from a class",
+          "date": "2022-04-14T15:04:37.570Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "You have been removed from a class",
+          "date": "2022-04-14T15:04:05.598Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "You have been removed from a class",
+          "date": "2022-04-14T15:03:33.983Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "You have been assigned to a new class",
+          "date": "2022-04-14T15:01:16.391Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "hi ",
+          "date": "2022-04-14T03:20:37.687Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
           "message": "bob 123",
           "date": "2022-04-13T20:00:55.428Z",
           "sender": "John",
@@ -265,10 +261,164 @@
       "id": 4,
       "messages": [
         {
+          "message": "You have been removed from a class",
+          "date": "2022-04-14T14:55:42.373Z",
+          "sender": "Nathan2",
+          "senderID": 4,
+          "read": true
+        },
+        {
+          "message": "Your schedule has been changed",
+          "date": "2022-04-14T14:47:06.589Z",
+          "sender": "Nathan2",
+          "senderID": 4,
+          "read": true
+        },
+        {
           "message": "Your scheduale has been changed",
-          "date": "2022-04-13T20:06:43.163Z",
-          "sender": "Nathan",
-          "senderID": 1,
+          "date": "2022-04-14T14:46:19.001Z",
+          "sender": "Nathan2",
+          "senderID": 4,
+          "read": true
+        },
+        {
+          "message": "John (userID: 2) enrolled in C++ class (classID: 1)",
+          "date": "2022-04-14T03:18:40.303Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "John (userID: 2) enrolled in Javascript class (classID: 2)",
+          "date": "2022-04-14T03:05:02.001Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "John (userID: 2) enrolled in MineCraft class (classID: 3)",
+          "date": "2022-04-14T02:03:13.353Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "Your scheduale has been changed",
+          "date": "2022-04-13T23:42:43.667Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "Your scheduale has been changed",
+          "date": "2022-04-13T23:23:25.265Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "Your scheduale has been changed",
+          "date": "2022-04-13T23:17:50.548Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "Your scheduale has been changed",
+          "date": "2022-04-13T23:17:01.940Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "Your scheduale has been changed",
+          "date": "2022-04-13T23:12:12.092Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "Your scheduale has been changed",
+          "date": "2022-04-13T23:00:51.002Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "Your scheduale has been changed",
+          "date": "2022-04-13T22:29:32.694Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "Your scheduale has been changed",
+          "date": "2022-04-13T22:25:45.251Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "Your scheduale has been changed",
+          "date": "2022-04-13T22:25:22.274Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "Your scheduale has been changed",
+          "date": "2022-04-13T22:20:55.903Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "Your scheduale has been changed",
+          "date": "2022-04-13T21:52:22.605Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "Your scheduale has been changed",
+          "date": "2022-04-13T21:27:34.752Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "Your scheduale has been changed",
+          "date": "2022-04-13T21:01:25.472Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "Your scheduale has been changed",
+          "date": "2022-04-13T21:00:48.197Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "Your scheduale has been changed",
+          "date": "2022-04-13T20:59:07.039Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "Your scheduale has been changed",
+          "date": "2022-04-13T20:56:17.301Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
+        },
+        {
+          "message": "Your scheduale has been changed",
+          "date": "2022-04-13T20:54:51.723Z",
+          "sender": "John",
+          "senderID": 2,
           "read": true
         },
         {
@@ -276,126 +426,14 @@
           "date": "2022-04-13T20:54:27.146Z",
           "sender": "John",
           "senderID": 2,
-          "read": false
+          "read": true
         },
         {
           "message": "Your scheduale has been changed",
-          "date": "2022-04-13T20:54:51.723Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        },
-        {
-          "message": "Your scheduale has been changed",
-          "date": "2022-04-13T20:56:17.301Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        },
-        {
-          "message": "Your scheduale has been changed",
-          "date": "2022-04-13T20:59:07.039Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        },
-        {
-          "message": "Your scheduale has been changed",
-          "date": "2022-04-13T21:00:48.197Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        },
-        {
-          "message": "Your scheduale has been changed",
-          "date": "2022-04-13T21:01:25.472Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        },
-        {
-          "message": "Your scheduale has been changed",
-          "date": "2022-04-13T21:27:34.752Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        },
-        {
-          "message": "Your scheduale has been changed",
-          "date": "2022-04-13T21:52:22.605Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        },
-        {
-          "message": "Your scheduale has been changed",
-          "date": "2022-04-13T22:20:55.903Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        },
-        {
-          "message": "Your scheduale has been changed",
-          "date": "2022-04-13T22:25:22.274Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        },
-        {
-          "message": "Your scheduale has been changed",
-          "date": "2022-04-13T22:25:45.251Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        },
-        {
-          "message": "Your scheduale has been changed",
-          "date": "2022-04-13T22:29:32.694Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        },
-        {
-          "message": "Your scheduale has been changed",
-          "date": "2022-04-13T23:00:51.002Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        },
-        {
-          "message": "Your scheduale has been changed",
-          "date": "2022-04-13T23:12:12.092Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        },
-        {
-          "message": "Your scheduale has been changed",
-          "date": "2022-04-13T23:17:01.940Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        },
-        {
-          "message": "Your scheduale has been changed",
-          "date": "2022-04-13T23:17:50.548Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        },
-        {
-          "message": "Your scheduale has been changed",
-          "date": "2022-04-13T23:23:25.265Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        },
-        {
-          "message": "Your scheduale has been changed",
-          "date": "2022-04-13T23:42:43.667Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
+          "date": "2022-04-13T20:06:43.163Z",
+          "sender": "Nathan",
+          "senderID": 1,
+          "read": true
         }
       ]
     },

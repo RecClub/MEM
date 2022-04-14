@@ -16,6 +16,7 @@ const CoachClass = () => {
   let [coaches, setCoaches] = useState();
   const [coachID, setCoachID] = React.useState(1);
   let [selectedClasses, setselectedClasses] = useState([]);
+  let loggedInUser = useContext(userContext).user;
 
   const handleChange = (event) => {
     setCoachID(parseInt(event.target.value));
@@ -39,9 +40,33 @@ const CoachClass = () => {
     });
 
     coach.class = newClass;
+    handleSendMessage();
     await jsonDB.put(`/users/${coach.id}`, coach);
 
     window.location.reload(false);
+  };
+
+  const handleSendMessage = async () => {
+    let message = "You have been removed from a class";
+    // setTextValue('');
+    
+      const data = await jsonDB.get(`/user_messages/${coach.id}`);
+      const user_messages = data.data;
+
+      user_messages.messages = [
+        ...user_messages.messages,
+        {
+          message,
+          date: new Date(),
+          sender: loggedInUser.name,
+          senderID: loggedInUser.id,
+          read: false,
+        },
+      ];
+      jsonDB.put(`/user_messages/${coach.id}`, user_messages);
+    
+
+    // handleDialogOpen();
   };
 
   useEffect(() => {

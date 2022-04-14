@@ -10,6 +10,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Typography from "@mui/material/Typography";
 
 import jsonDB from '../apis/jsonDB';
 import userContext from '../contexts/UserContext';
@@ -67,6 +68,9 @@ const CoachMessage = () => {
 
   return (
     <div>
+        <Typography sx={{ fontSize: 25 }} color="text.primary">
+        Send Notification
+      </Typography>
       <Dialog
         open={dialogOpen}
         onClose={handleDialogClose}

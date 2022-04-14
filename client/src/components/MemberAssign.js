@@ -7,19 +7,24 @@ import userContext from "../contexts/UserContext";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import Typography from "@mui/material/Typography";
 
-const CoachList = () => {
-  let loggedInUser = useContext(userContext).user;
-  let [users, setUsers] = useState();
-  let [selectedUsers, setSelectedUsers] = useState([]);
-  let [selectedClasses, setselectedClasses] = useState([]);
-  let [classes, setClasses] = useState();
+const MemberAssign = () => {
 
+
+    let [users, setUsers] = useState();
+    let [selectedMembers, setSelectedMembers] = useState([]);
+    let [selectedClasses, setselectedClasses] = useState([]);
+    let [classes, setClasses] = useState();
+    let loggedInUser = useContext(userContext).user;
+
+    
   const handleSelectionChange = (ids) => {
     if (!ids) return;
     const selectedIDs = new Set(ids);
-    setSelectedUsers(users.filter((user) => selectedIDs.has(user.id)));
+    setSelectedMembers(users.filter((user) => selectedIDs.has(user.id)));
   };
 
+
+  
   const handleClassSelectionChange = (ids) => {
     if (!ids) return;
     const selectedIDs = new Set(ids);
@@ -28,25 +33,8 @@ const CoachList = () => {
     );
   };
 
-  const handleDeleteCoach = async () => {
-    let promises = selectedUsers.map((user) => {
-      let newClass = {};
-      Object.entries(user.class).forEach(([k, v]) => {
-        if (!selectedClasses.find((x) => k == x.id)) {
-          newClass[k] = v;
-        }
-      });
-
-      user.class = newClass;
-      return jsonDB.put(`/users/${user.id}`, user);
-    });
-    // handleSendMessage();
-    await Promise.all(promises);
-    window.location.reload(false);
-  };
-
   const handleClasses = async () => {
-    let promises = selectedUsers.map((user) => {
+    let promises = selectedMembers.map((user) => {
       selectedClasses.forEach((c) => {
         user.class[c.id] = true;
       });
@@ -60,7 +48,7 @@ const CoachList = () => {
   const handleSendMessage = async () => {
     let message = "You have been assigned to a new class";
     // setTextValue('');
-    selectedUsers.forEach(async (user) => {
+    selectedMembers.forEach(async (user) => {
       const data = await jsonDB.get(`/user_messages/${user.id}`);
       const user_messages = data.data;
 
@@ -101,7 +89,7 @@ const CoachList = () => {
   if (!users) return <div>Loading...</div>;
 
   let filterlist = users.filter((x) => {
-    return x.role === "Coach";
+    return x.role === "Member";
   });
 
   const classList = classes;
@@ -119,7 +107,7 @@ const CoachList = () => {
   return (
     <div>
       <Typography sx={{ fontSize: 25 }} color="text.primary">
-        Assign Classes to Coaches
+        Assign Classes to Members
       </Typography>
       <div style={{ display: "flex" }}>
         <DataGrid
@@ -148,6 +136,7 @@ const CoachList = () => {
       </Button>
     </div>
   );
+
 };
 
-export default CoachList;
+export default MemberAssign;
