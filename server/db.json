@@ -15,9 +15,9 @@
       "name": "John",
       "role": "Member",
       "class": {
-        "1": false,
+        "1": true,
         "2": true,
-        "3": false
+        "3": true
       },
       "password": "asd"
     },
@@ -25,7 +25,9 @@
       "name": "testbot",
       "role": "Member",
       "class": {
-        "2": true
+        "1": true,
+        "2": true,
+        "3": true
       },
       "password": "123",
       "id": 3

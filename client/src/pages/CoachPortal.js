@@ -5,12 +5,14 @@ import TextField from '@mui/material/TextField';
 
 import CoachMessage from '../components/CoachMessage';
 import MemberClass from '../components/MemberClass';
+import MemberAssign from '../components/MemberAssign';
 
 const CoachPortal = () => {
   return (
     <div>
       <CoachMessage />
       <MemberClass/>
+      <MemberAssign/>
     </div>
   );
 };
