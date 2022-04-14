@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -85,15 +84,30 @@ const MemberLog = () => {
     return x;
   });
 
+  let memberlist = temp.filter((x) => {
+    return (x.role == "Member");
+  });
+
   let gridData = {
     columns: [
       { field: "id", hide: true },
-      { field: "name", headerName: "Name" },
-      { field: "paid", headerName: "Paid" },
-      { field: "attendance", headerName: "Attendance" },
-      { field: "nump", headerName: "Number of Times Paid" },
+      { field: "name", headerName: "Name" , width: 100},
+      { field: "paid", headerName: "Paid" , width: 100},
+      { field: "phone", headerName: "Phone Number" , width: 125},
+      { field: "address", headerName: "Address" , width: 125},
     ],
     rows: filterlist,
+  };
+
+  let gridmemData = {
+    columns: [
+      { field: "id", hide: true },
+      { field: "name", headerName: "Name" , width: 100},
+      { field: "attendance", headerName: "Attendance" , width: 125},
+      { field: "nump", headerName: "Number of Times Paid" , width: 175},
+      
+    ],
+    rows: memberlist,
   };
 
   return (
@@ -101,19 +115,25 @@ const MemberLog = () => {
       <Typography sx={{ fontSize: 25 }} color="text.primary">
         Check Paid or Unpaid Members
       </Typography>
-      <div style={{ display: "flex", maxWidth: 600, minHeight: 300 }}>
-        <FormControl fullWidth>
-          <Select value={classID} onChange={handleChange}>
+      <FormControl maxWidth>
+        <Select style = {{display : "inline"}} value={classID} onChange={handleChange}>
             <MenuItem value={1}>Class 1</MenuItem>
             <MenuItem value={2}>Class 2</MenuItem>
             <MenuItem value={3}>Class 3</MenuItem>
           </Select>
         </FormControl>
-
+      <div style={{ display: "flex", maxWidth: "auto", minHeight: 300 }}>
         <DataGrid
           autoHeight
           components={{ Toolbar: GridToolbar }}
           {...gridData}
+        />
+      </div>
+      <div style={{ display: "flex", maxWidth: "auto", minHeight: 300 }}>
+        <DataGrid
+          autoHeight
+          components={{ Toolbar: GridToolbar }}
+          {...gridmemData}
         />
       </div>
     </div>

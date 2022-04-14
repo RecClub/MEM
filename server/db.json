@@ -39,14 +39,14 @@
       "name": "testbot",
       "role": "Member",
       "discount": true,
-      "attendance": 3,
-      "nump": 3,
+      "attendance": 2,
+      "nump": 1,
       "class": {
         "2": true,
-        "3": true
+        "3": false
       },
       "password": "123",
-      "penalty": false,
+      "penalty": true,
       "id": 3
     },
     {
