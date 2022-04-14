@@ -20,6 +20,9 @@
       "id": 2,
       "name": "John",
       "role": "Member",
+      "discount": "No",
+      "attendance": 3,
+      "nump": 3,
       "class": {
         "1": true,
         "2": true,
@@ -30,6 +33,9 @@
     {
       "name": "testbot",
       "role": "Member",
+      "discount": "No",
+      "attendance": 3,
+      "nump": 3,
       "class": {
         "1": true,
         "2": true,
