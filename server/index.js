@@ -17,12 +17,12 @@ app.post('/checkout', async (req, res) => {
     line_items: [
       {
         // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-        price: 'price_1KjqrJIa56nMI1YLB3ZP0BVQ',
+        price: req.query.price == "60" ? 'price_1KoFK3Ia56nMI1YLbgom6wg3' : 'price_1KoFLWIa56nMI1YLqQgUxVrw',
         quantity: 1,
       },
     ],
     mode: 'payment',
-    success_url: `${CLIENT_DOMAIN}/Member?success=true&userID=${req.query.userID}&classID=${req.query.classID}`,
+    success_url: `${CLIENT_DOMAIN}/Member?success=true&userID=${req.query.userID}&classID=${req.query.classID}&price=${req.query.price}`,
     cancel_url: `${CLIENT_DOMAIN}/Member?canceled=true`,
   });
   

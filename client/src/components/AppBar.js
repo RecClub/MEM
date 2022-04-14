@@ -174,7 +174,7 @@ const ResponsiveAppBar = () => {
               </Badge>
             </IconButton>
             <Menu
-              sx={{ mt: '45px', maxWidth: '300px' }}
+              sx={{ mt: '45px', maxWidth: '300px', maxHeight: '600px' }}
               id="menu-appbar"
               anchorEl={anchorElNotifications}
               anchorOrigin={{
