@@ -165,7 +165,6 @@ const Payment = () => {
       }
 
       await jsonDB.put(`users/${query.get('userID')}`, user);
-      await fetchUserClasses();
 
       let classObj = classes.find((x) => parseInt(query.get('classID')) == x.id);
       let paid = {name: user.name, "userID": user.id, "paidDate": d, price: "$" + query.get('price'), classID: query.get('classID'), className: classObj.name}
@@ -207,7 +206,7 @@ const Payment = () => {
       setMessageTitle('Payment Cancelled');
       handleDialogOpen();
     }
-  }, [user, classes, fetchUserClasses]);
+  }, [user, classes]);
 
   let gridData = {
     columns: [
