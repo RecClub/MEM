@@ -22,11 +22,11 @@
       "role": "Member",
       "discount": "Yes",
       "attendance": 3,
-      "nump": 3,
+      "nump": 2,
       "class": {
         "1": true,
         "2": true,
-        "3": true
+        "3": false
       },
       "password": "asd"
     },

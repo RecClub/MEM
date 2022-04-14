@@ -46,7 +46,7 @@ const MemberLog = () => {
     //Check the number of times paid
     if (users.role === "Member") {
       for (let j = 1; j < users.class.length; j++) {
-        if (users.class[j]) {
+        if (users.class[j] == true) {
           nump++;
         }
       }
