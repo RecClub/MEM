@@ -14,6 +14,7 @@ import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 const CoachClass = () => {
   let [users, setUsers] = useState();
   let [classes, setClasses] = useState();
+  let [payment, setPayment] = useState();
   let [coaches, setCoaches] = useState();
   const [coachID, setCoachID] = React.useState(1);
   let [selectedClasses, setselectedClasses] = useState([]);
@@ -99,6 +100,15 @@ const CoachClass = () => {
   }, []);
 
   useEffect(() => {
+    const fetchClass = async () => {
+      const data = await jsonDB.get("/payments");
+      setPayment(data.data);
+    };
+
+    fetchClass();
+  }, []);
+
+  useEffect(() => {
     if (!users) return;
     setMember(
       users.filter((x) => {
@@ -113,17 +123,14 @@ const CoachClass = () => {
 
   if (!coaches) return <div>Loading...</div>;
 
+  if (!payment) return <div>Loading...</div>;
+
   const coach = users.find((user) => user.id == coachID);
 
   let filterlist = classes.filter((x) => {
     return x.id in coach.class;
   });
 
-  // let filterlist2 = member.filter((x) => {
-  //   return "paid_classes" in x
-  
-  
-  // })
 
   let gridData = {
     columns: [
@@ -135,13 +142,16 @@ const CoachClass = () => {
     rows: filterlist,
   };
 
-  // let gridData2 = {
-  //   columns: [
-  //     { field: "id", hide: true },
-  //     { field: "name", headerName: "Name", width: 150 }
-  //   ],
-  //   rows: filterlist2,
-  // };
+  let gridData2 = {
+    columns: [
+      { field: "id", hide: true },
+      { field: "name", headerName: "Name", width: 150 },
+      {field: "paidDate", headerName: "Transaction Date", width: 150},
+      {field: "price", headerName: "Class Price", width: 150},
+      {field: "className", headerName: "Class Name", width: 150}
+    ],
+    rows: payment,
+  };
 
   return (
     <div>
@@ -173,6 +183,12 @@ const CoachClass = () => {
           <Typography sx={{ fontSize: 25 }} color="text.primary">
             View Members Who Have Paid in Advance
           </Typography>
+
+          <DataGrid
+          autoHeight
+          components={{ Toolbar: GridToolbar }}
+          {...gridData2}
+        />
  
       </div>
     </div>

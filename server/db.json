@@ -28,13 +28,13 @@
       "attendance": 3,
       "nump": 2,
       "class": {
-        "2": true,
-        "3": false
+        "2": false,
+        "3": true
       },
       "password": "asd",
       "paid_classes": {
         "3": {
-          "date": "2022-04-14T17:31:58.409Z",
+          "date": "2022-04-14T19:32:51.026Z",
           "price": "60"
         }
       }
@@ -225,6 +225,20 @@
           "date": "2022-04-14T19:18:46.638Z",
           "sender": "Nathan",
           "senderID": 1,
+          "read": false
+        },
+        {
+          "message": "John (userID: 2) paid $60 for MineCraft class (classID: 3)",
+          "date": "2022-04-14T19:32:51.813Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": false
+        },
+        {
+          "message": "John (userID: 2) paid $60 for MineCraft class (classID: 3)",
+          "date": "2022-04-14T19:32:51.925Z",
+          "sender": "John",
+          "senderID": 2,
           "read": false
         }
       ],
@@ -518,19 +532,19 @@
   ],
   "payments": [
     {
-      "name": "Nathan",
-      "userID": 1,
-      "paidDate": "2022-04-14T19:18:46.285Z",
-      "price": "60",
+      "name": "John",
+      "userID": 2,
+      "paidDate": "2022-04-14T19:32:50.905Z",
+      "price": "$60",
       "classID": "3",
       "className": "MineCraft class",
       "id": 1
     },
     {
-      "name": "Nathan",
-      "userID": 1,
-      "paidDate": "2022-04-14T19:18:46.345Z",
-      "price": "60",
+      "name": "John",
+      "userID": 2,
+      "paidDate": "2022-04-14T19:32:51.026Z",
+      "price": "$60",
       "classID": "3",
       "className": "MineCraft class",
       "id": 2

@@ -168,7 +168,7 @@ const Payment = () => {
       await fetchUserClasses();
 
       let classObj = classes.find((x) => parseInt(query.get('classID')) == x.id);
-      let paid = {name: user.name, "userID": user.id, "paidDate": d, price: query.get('price'), classID: query.get('classID'), className: classObj.name}
+      let paid = {name: user.name, "userID": user.id, "paidDate": d, price: "$" + query.get('price'), classID: query.get('classID'), className: classObj.name}
       await jsonDB.post(`/payments`, paid);
 
       let users = await jsonDB.get('/users');
