@@ -67,7 +67,7 @@ const LoginPanel = (props) => {
         </Grid>
 
         <Grid item>
-          <TextField sx={{ width: "100%" }} required variant='standard' label='Password' onChange={OnPswChange} value={inputPsw} />
+          <TextField type="password" sx={{ width: "100%" }} required variant='standard' label='Password' onChange={OnPswChange} value={inputPsw} />
         </Grid>
 
         <Grid item>
@@ -201,12 +201,12 @@ const RegisterPanel = (props) => {
         </Grid>
 
         <Grid item>
-          <TextField sx={{ width: "100%" }} required variant='standard' label='Password' onChange={OnPswChange} value={inputPsw} />
+          <TextField type="password" sx={{ width: "100%" }} required variant='standard' label='Password' onChange={OnPswChange} value={inputPsw} />
         </Grid>
 
 
         <Grid item>
-          <TextField sx={{ width: "100%" }} required variant='standard' label='Confirm Password' onChange={OnConfirmPswChange} value={inputConfirmPsw} />
+          <TextField type="password" sx={{ width: "100%" }} required variant='standard' label='Confirm Password' onChange={OnConfirmPswChange} value={inputConfirmPsw} />
         </Grid>
 
 
