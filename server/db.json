@@ -105,28 +105,12 @@
   ],
   "debt": [
     {
-      "debtType": "C++ Hall Char",
-      "status": "",
-      "debtAmount": "",
-      "debtStartDate": "",
-      "debtPriority": "",
+      "debtType": "Coach Mijal Expenses",
+      "status": "Unpaid",
+      "debtAmount": "$2455",
+      "debtStartDate": "2022-04-05",
+      "debtPriority": "1",
       "id": 1
-    },
-    {
-      "debtType": "Coach Nathan2",
-      "status": "",
-      "debtAmount": "",
-      "debtStartDate": "",
-      "debtPriority": "",
-      "id": 2
-    },
-    {
-      "debtType": "",
-      "status": "",
-      "debtAmount": "",
-      "debtStartDate": "",
-      "debtPriority": "",
-      "id": 4
     }
   ],
   "user_messages": [

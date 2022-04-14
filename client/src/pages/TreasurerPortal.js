@@ -5,6 +5,7 @@ import MemberLog from '../components/MemberLog';
 import CoachList from '../components/CoachList';
 import UnpaidDebt from '../components/UnpaidDebt';
 import CoachClass from '../components/CoachClass';
+import PaymentInvoice from '../components/PaymentInvoice';
 
 const TreasurerPortal = () => {
   return (
@@ -16,7 +17,8 @@ const TreasurerPortal = () => {
       <br/>
       UnpaidDebt
       <UnpaidDebt/>
-      
+      <br/>
+      <PaymentInvoice/>
     </div>
   );
 };
