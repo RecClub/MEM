@@ -1,4 +1,4 @@
-import React, {useContext}from 'react';
+import React, {useContext, useEffect}from 'react';
 import {
   Navigate,
   useLocation,
@@ -11,6 +11,11 @@ const PrivateRoute = (props) => {
   let {userID, setUserID, user} = useContext(userContext);
   const isLoggedIn = userID.userID !== "";
   const location = useLocation()
+
+  useEffect(() => {
+  }, [user]);
+
+  if (!user.role) return <div>Loading...</div>;
 
   return isLoggedIn && `/${user.role}` == location.pathname ? (
     <>{children}</>
