@@ -64,20 +64,20 @@
       "debtPriority": "1"
     },
     {
-      "id": 2,
       "debtType": "Coach Nathan2 Expenses",
       "status": "Unpaid",
-      "debtAmount": "$555.01",
-      "debtStartDate": "2022-03-26",
-      "debtPriority": "1"
+      "debtAmount": "$2555",
+      "debtStartDate": "2022-03-25",
+      "debtPriority": "1",
+      "id": 2
     },
     {
-      "id": 3,
-      "debtType": "C++ Class Banquet Hall",
-      "status": "Partially paid",
-      "debtAmount": "$1155.11",
-      "debtStartDate": "2022-04-01",
-      "debtPriority": "2"
+      "debtType": "Coach Sher Expenses",
+      "status": "Unpaid",
+      "debtAmount": "$4422",
+      "debtStartDate": "2022-04-05",
+      "debtPriority": "2",
+      "id": 3
     },
     {
       "id": 4,
@@ -86,14 +86,6 @@
       "debtAmount": "$705.42",
       "debtStartDate": "2022-04-11",
       "debtPriority": "N/A"
-    },
-    {
-      "debtType": "C++ Hall",
-      "status": "Paid",
-      "debtAmount": "$2222",
-      "debtStartDate": "2022-03-25",
-      "debtPriority": "3",
-      "id": 5
     }
   ],
   "user_messages": [
