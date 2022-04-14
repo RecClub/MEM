@@ -31,6 +31,7 @@ const MemberLog = () => {
 
   let filterlist = users.filter((x) => {
     if (!("class" in x)) return false;
+    if (x.role == "Coach") return false;
     return classID in x.class;
   });
 

@@ -20,7 +20,7 @@
       "id": 2,
       "name": "John",
       "role": "Member",
-      "discount": "No",
+      "discount": "Yes",
       "attendance": 3,
       "nump": 3,
       "class": {
