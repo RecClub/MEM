@@ -154,20 +154,25 @@ const Payment = () => {
       let user = await jsonDB.get(`users/${query.get('userID')}`);
       user = user.data;
 
+      let d = new Date();
+
       user.class[query.get('classID')] = true;
       if (user["paid_classes"]){
-        user["paid_classes"][query.get('classID')] = {date: new Date(), price: query.get('price')};
+        user["paid_classes"][query.get('classID')] = {date: d, price: query.get('price')};
       } else {
         user["paid_classes"] = {}
-        user["paid_classes"][query.get('classID')] = {date: new Date(), price: query.get('price')};
+        user["paid_classes"][query.get('classID')] = {date: d, price: query.get('price')};
       }
 
       await jsonDB.put(`users/${query.get('userID')}`, user);
       await fetchUserClasses();
 
+      let classObj = classes.find((x) => parseInt(query.get('classID')) == x.id);
+      let paid = {name: user.name, "userID": user.id, "paidDate": d, price: query.get('price'), classID: query.get('classID'), className: classObj.name}
+      await jsonDB.post(`/payments`, paid);
+
       let users = await jsonDB.get('/users');
       users = users.data;
-      let classObj = classes.find((x) => parseInt(query.get('classID')) == x.id);
       let message = `${user.name} (userID: ${user.id}) paid $${query.get('price')} for ${
         classObj.name
       } (classID: ${classObj.id})`;

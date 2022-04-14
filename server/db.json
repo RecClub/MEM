@@ -10,8 +10,12 @@
         "3": true
       },
       "paid_classes": {
+        "1": {
+          "date": "2022-04-14T19:15:54.423Z",
+          "price": "40"
+        },
         "3": {
-          "date": "2022-04-14T17:31:58.409Z",
+          "date": "2022-04-14T19:18:46.345Z",
           "price": "60"
         }
       }
@@ -175,6 +179,41 @@
         {
           "message": "Nathan (userID: 1) paid $60 for MineCraft class (classID: 3)",
           "date": "2022-04-14T17:31:58.712Z",
+          "sender": "Nathan",
+          "senderID": 1,
+          "read": false
+        },
+        {
+          "message": "Nathan (userID: 1) paid $40 for C++ class (classID: 1)",
+          "date": "2022-04-14T19:15:54.768Z",
+          "sender": "Nathan",
+          "senderID": 1,
+          "read": false
+        },
+        {
+          "message": "Nathan (userID: 1) paid $60 for MineCraft class (classID: 3)",
+          "date": "2022-04-14T19:17:34.923Z",
+          "sender": "Nathan",
+          "senderID": 1,
+          "read": false
+        },
+        {
+          "message": "Nathan (userID: 1) paid $60 for MineCraft class (classID: 3)",
+          "date": "2022-04-14T19:17:34.969Z",
+          "sender": "Nathan",
+          "senderID": 1,
+          "read": false
+        },
+        {
+          "message": "Nathan (userID: 1) paid $60 for MineCraft class (classID: 3)",
+          "date": "2022-04-14T19:18:46.576Z",
+          "sender": "Nathan",
+          "senderID": 1,
+          "read": false
+        },
+        {
+          "message": "Nathan (userID: 1) paid $60 for MineCraft class (classID: 3)",
+          "date": "2022-04-14T19:18:46.638Z",
           "sender": "Nathan",
           "senderID": 1,
           "read": false
@@ -434,6 +473,13 @@
           "sender": "Nathan",
           "senderID": 1,
           "read": true
+        },
+        {
+          "message": "Nathan (userID: 1) paid $40 for C++ class (classID: 1)",
+          "date": "2022-04-14T19:15:54.769Z",
+          "sender": "Nathan",
+          "senderID": 1,
+          "read": false
         }
       ]
     },
@@ -444,6 +490,26 @@
     {
       "id": 4,
       "messages": []
+    }
+  ],
+  "payments": [
+    {
+      "name": "Nathan",
+      "userID": 1,
+      "paidDate": "2022-04-14T19:18:46.285Z",
+      "price": "60",
+      "classID": "3",
+      "className": "MineCraft class",
+      "id": 1
+    },
+    {
+      "name": "Nathan",
+      "userID": 1,
+      "paidDate": "2022-04-14T19:18:46.345Z",
+      "price": "60",
+      "classID": "3",
+      "className": "MineCraft class",
+      "id": 2
     }
   ]
 }
