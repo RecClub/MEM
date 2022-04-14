@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -10,7 +9,9 @@ import Typography from "@mui/material/Typography";
 import jsonDB from "../apis/jsonDB";
 
 const MemberLog = () => {
-  let [users, setUsers] = useState();
+  let [temp, setUsers] = useState();
+
+  let [init, setInit] = useState(false);
 
   const [classID, setValue] = React.useState(1);
 
@@ -19,19 +20,62 @@ const MemberLog = () => {
   };
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const data = await jsonDB.get("/users");
-      setUsers(data.data);
-    };
+    const fetchUsers = jsonDB.get("/users");
 
-    fetchUsers();
-  }, []);
+    fetchUsers.then((res) => {
+      let users = res.data;
+      let memberlist = users.filter((x) => {
+        return (x.role == "Member");
+      });
+      let otherlist = users.filter((x) => {
+        return !(x.role == "Member");
+      });
 
-  if (!users) return <div>Loading...</div>;
+      memberlist.sort((a , b ) => {
+        return (b.attendance - a.attendance);
+      });
 
-  let filterlist = users.filter((x) => {
+      for (let i = 0; i < memberlist.length; i++) {
+        let p = memberlist[i].id; 
+        //Check the number of times paid
+          let attends = 0;
+          let nump = 0;
+          for (const j in memberlist[i].class) {
+            if (memberlist[i].class[j]) {
+              nump++;
+              memberlist[i].nump = nump;
+            }
+          }
+
+          //Update the number of times the user has attended
+          attends = Object.keys(memberlist[i].class).length;
+          memberlist[i].attendance = attends;
+
+          //Grant discounts or give penalties
+          if (nump < attends) {
+            memberlist[i].penalty = true;
+          } else {
+            memberlist[i].penalty = false;
+          }
+          if ((nump == attends && attends >= 12) || i < 10) {
+            memberlist[i].discount = true;
+          }
+          jsonDB.put(`/users/${p}`, memberlist[i]);
+      }
+
+
+      setUsers([...otherlist, ...memberlist]);
+      setInit(true);
+    });
+  }, [init]);
+
+
+  if (!temp) return <div>Loading...</div>;
+
+  let filterlist = temp.filter((x) => {
     if (!("class" in x)) return false;
     if (x.role == "Coach") return false;
+    if (x.role == "Treasurer") return false;
     return classID in x.class;
   });
 
@@ -40,44 +84,30 @@ const MemberLog = () => {
     return x;
   });
 
-  let nump = 0;
-
-  for (let i = 1; i < users.length; i++) {
-    //Check the number of times paid
-    if (users.role === "Member") {
-      for (let j = 1; j < users.class.length; j++) {
-        if (users.class[j] == true) {
-          nump++;
-        }
-      }
-    
-    //Update the number of times the user has attended
-    users[i].attendance = users.class.length;
-    
-    //Update the number of times the user has paid
-    users[i].nump = nump;
-    
-    //Grant discounts or give penalties
-    if (nump < users.class.length) {
-      users.penalty = "Yes";
-    } else {
-      users.penalty = "No";
-    }
-    if (nump === users.class.length && users.class.length > 16) {
-      users.discount = "Yes";
-    }
-  }
-  }
+  let memberlist = temp.filter((x) => {
+    return (x.role == "Member");
+  });
 
   let gridData = {
     columns: [
       { field: "id", hide: true },
-      { field: "name", headerName: "Name" },
-      { field: "paid", headerName: "Paid" },
-      { field: "attendance", headerName: "Attendance" },
-      { field: "nump", headerName: "Number of Times Paid" },
+      { field: "name", headerName: "Name" , width: 100},
+      { field: "paid", headerName: "Paid" , width: 100},
+      { field: "phone", headerName: "Phone Number" , width: 125},
+      { field: "address", headerName: "Address" , width: 125},
     ],
     rows: filterlist,
+  };
+
+  let gridmemData = {
+    columns: [
+      { field: "id", hide: true },
+      { field: "name", headerName: "Name" , width: 100},
+      { field: "attendance", headerName: "Attendance" , width: 125},
+      { field: "nump", headerName: "Number of Times Paid" , width: 175},
+      
+    ],
+    rows: memberlist,
   };
 
   return (
@@ -85,19 +115,25 @@ const MemberLog = () => {
       <Typography sx={{ fontSize: 25 }} color="text.primary">
         Check Paid or Unpaid Members
       </Typography>
-      <div style={{ display: "flex", maxWidth: 600, minHeight: 300 }}>
-        <FormControl fullWidth>
-          <Select value={classID} onChange={handleChange}>
+      <FormControl maxWidth>
+        <Select style = {{display : "inline"}} value={classID} onChange={handleChange}>
             <MenuItem value={1}>Class 1</MenuItem>
             <MenuItem value={2}>Class 2</MenuItem>
             <MenuItem value={3}>Class 3</MenuItem>
           </Select>
         </FormControl>
-
+      <div style={{ display: "flex", maxWidth: "auto", minHeight: 300 }}>
         <DataGrid
           autoHeight
           components={{ Toolbar: GridToolbar }}
           {...gridData}
+        />
+      </div>
+      <div style={{ display: "flex", maxWidth: "auto", minHeight: 300 }}>
+        <DataGrid
+          autoHeight
+          components={{ Toolbar: GridToolbar }}
+          {...gridmemData}
         />
       </div>
     </div>

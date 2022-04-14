@@ -21,35 +21,32 @@
       }
     },
     {
-      "id": 2,
       "name": "John",
       "role": "Member",
-      "discount": "Yes",
+      "discount": true,
       "attendance": 3,
-      "nump": 2,
+      "nump": 3,
       "class": {
-        "2": false,
+        "1": true,
+        "2": true,
         "3": true
       },
       "password": "asd",
-      "paid_classes": {
-        "3": {
-          "date": "2022-04-14T19:32:51.026Z",
-          "price": "60"
-        }
-      }
+      "penalty": false,
+      "id": 2
     },
     {
       "name": "testbot",
       "role": "Member",
-      "discount": "No",
-      "attendance": 3,
-      "nump": 3,
+      "discount": true,
+      "attendance": 2,
+      "nump": 1,
       "class": {
         "2": true,
-        "3": true
+        "3": false
       },
       "password": "123",
+      "penalty": true,
       "id": 3
     },
     {
