@@ -155,6 +155,13 @@ const Payment = () => {
       user = user.data;
 
       user.class[query.get('classID')] = true;
+      if (user["paid_classes"]){
+        user["paid_classes"][query.get('classID')] = {date: new Date(), price: query.get('price')};
+      } else {
+        user["paid_classes"] = {}
+        user["paid_classes"][query.get('classID')] = {date: new Date(), price: query.get('price')};
+      }
+
       await jsonDB.put(`users/${query.get('userID')}`, user);
       await fetchUserClasses();
 

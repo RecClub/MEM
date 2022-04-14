@@ -8,6 +8,12 @@
       "class": {
         "1": true,
         "3": true
+      },
+      "paid_classes": {
+        "3": {
+          "date": "2022-04-14T17:31:58.409Z",
+          "price": "60"
+        }
       }
     },
     {
@@ -190,6 +196,34 @@
           "sender": "Nathan",
           "senderID": 1,
           "read": true
+        },
+        {
+          "message": "Nathan (userID: 1) paid $60 for MineCraft class (classID: 3)",
+          "date": "2022-04-14T17:31:53.579Z",
+          "sender": "Nathan",
+          "senderID": 1,
+          "read": false
+        },
+        {
+          "message": "Nathan (userID: 1) paid $60 for MineCraft class (classID: 3)",
+          "date": "2022-04-14T17:31:53.692Z",
+          "sender": "Nathan",
+          "senderID": 1,
+          "read": false
+        },
+        {
+          "message": "Nathan (userID: 1) paid $60 for MineCraft class (classID: 3)",
+          "date": "2022-04-14T17:31:58.566Z",
+          "sender": "Nathan",
+          "senderID": 1,
+          "read": false
+        },
+        {
+          "message": "Nathan (userID: 1) paid $60 for MineCraft class (classID: 3)",
+          "date": "2022-04-14T17:31:58.712Z",
+          "sender": "Nathan",
+          "senderID": 1,
+          "read": false
         }
       ],
       "id": 1
