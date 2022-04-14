@@ -140,6 +140,10 @@ const RegisterPanel = (props) => {
                 name: inputName,
                 phone: inputPhone,
                 address: inputAddress,
+                discount: false,
+                attendance: 0,
+                nump: 0,
+                penalty: false,
                 class: {},
                 role: "Member",
                 password: inputPsw
@@ -151,6 +155,10 @@ const RegisterPanel = (props) => {
                 name: inputName,
                 phone: inputPhone,
                 address: inputAddress,
+                discount: false,
+                attendance: 0,
+                nump: 0,
+                penalty: false,
                 class: {},
                 role: "Member",
                 password: inputPsw
