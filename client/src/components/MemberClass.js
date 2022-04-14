@@ -112,9 +112,6 @@ useEffect(() => {
 
 
 
-
-// const c = classList.find((user) => user.id == classID);
-
 let filterlist = member.filter((x) => {
     return classID in x.class;
   });

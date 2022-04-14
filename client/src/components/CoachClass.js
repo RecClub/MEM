@@ -18,6 +18,7 @@ const CoachClass = () => {
   const [coachID, setCoachID] = React.useState(1);
   let [selectedClasses, setselectedClasses] = useState([]);
   let loggedInUser = useContext(userContext).user;
+  let [member, setMember] = useState();
 
   const handleChange = (event) => {
     setCoachID(parseInt(event.target.value));
@@ -97,6 +98,15 @@ const CoachClass = () => {
     fetchClass();
   }, []);
 
+  useEffect(() => {
+    if (!users) return;
+    setMember(
+      users.filter((x) => {
+        return x.role === "Member";
+      })
+    );
+  }, [users]);
+
   if (!users) return <div>Loading...</div>;
 
   if (!classes) return <div>Loading...</div>;
@@ -109,9 +119,11 @@ const CoachClass = () => {
     return x.id in coach.class;
   });
 
-  // let filterlist = users.filter( x => {
-  //     return (x.role === "Coach")
-  //   } )
+  // let filterlist2 = member.filter((x) => {
+  //   return "paid_classes" in x
+  
+  
+  // })
 
   let gridData = {
     columns: [
@@ -122,6 +134,14 @@ const CoachClass = () => {
     ],
     rows: filterlist,
   };
+
+  // let gridData2 = {
+  //   columns: [
+  //     { field: "id", hide: true },
+  //     { field: "name", headerName: "Name", width: 150 }
+  //   ],
+  //   rows: filterlist2,
+  // };
 
   return (
     <div>
@@ -143,13 +163,17 @@ const CoachClass = () => {
           onSelectionModelChange={handleClassSelectionChange}
           {...gridData}
         />
-        <Button
+          <Button
           variant="contained"
           endIcon={<PersonRemoveIcon />}
           onClick={handleDeleteCoach}
         >
           Unassign Class
         </Button>
+          <Typography sx={{ fontSize: 25 }} color="text.primary">
+            View Members Who Have Paid in Advance
+          </Typography>
+ 
       </div>
     </div>
   );

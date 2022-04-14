@@ -21,17 +21,21 @@
       "name": "John",
       "role": "Member",
       "class": {
-        "1": true,
         "2": true,
         "3": true
       },
-      "password": "asd"
+      "password": "asd",
+      "paid_classes": {
+        "3": {
+          "date": "2022-04-14T17:31:58.409Z",
+          "price": "60"
+        }
+      }
     },
     {
       "name": "testbot",
       "role": "Member",
       "class": {
-        "1": true,
         "2": true,
         "3": true
       },
@@ -43,7 +47,6 @@
       "name": "Nathan2",
       "role": "Coach",
       "class": {
-        "1": true,
         "2": true
       },
       "password": "asd"
@@ -254,6 +257,13 @@
           "sender": "John",
           "senderID": 2,
           "read": true
+        },
+        {
+          "message": "You have been removed from a class",
+          "date": "2022-04-14T18:30:35.561Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": false
         }
       ]
     },
@@ -434,12 +444,27 @@
           "sender": "Nathan",
           "senderID": 1,
           "read": true
+        },
+        {
+          "message": "You have been removed from a class",
+          "date": "2022-04-14T18:49:46.407Z",
+          "sender": "Nathan",
+          "senderID": 1,
+          "read": false
         }
       ]
     },
     {
       "id": 3,
-      "messages": []
+      "messages": [
+        {
+          "message": "You have been removed from a class",
+          "date": "2022-04-14T19:19:58.271Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": false
+        }
+      ]
     },
     {
       "id": 4,
