@@ -6,18 +6,9 @@
       "role": "Coach",
       "password": "asd",
       "class": {
-        "1": true,
-        "3": true
       },
       "paid_classes": {
-        "1": {
-          "date": "2022-04-14T19:15:54.423Z",
-          "price": "40"
-        },
-        "3": {
-          "date": "2022-04-14T19:18:46.345Z",
-          "price": "60"
-        }
+    
       }
     },
     {
@@ -27,58 +18,31 @@
       "attendance": 0,
       "nump": 2,
       "class": {
-        "1": true,
-        "2": true,
-        "3": false
       },
       "password": "asd",
       "penalty": false,
       "id": 2,
       "paid_classes": {
-        "3": {
-          "date": "2022-04-15T03:10:38.842Z",
-          "price": "54"
-        }
       }
     },
     {
-      "name": "testbot",
+      "name": "Mijal",
       "role": "Member",
-      "discount": true,
+      "discount": false,
       "attendance": 0,
       "nump": 1,
       "class": {
-        "2": true,
-        "3": false
+        "3" : false
       },
       "password": "123",
       "penalty": false,
       "id": 3
     },
     {
-      "id": 4,
-      "name": "Nathan2",
-      "role": "Coach",
-      "class": {
-        "2": true
-      },
-      "password": "asd"
-    },
-    {
       "id": 5,
       "name": "Sher",
       "role": "Treasurer",
       "class": {
-        "2": true
-      },
-      "password": "asd"
-    },
-    {
-      "id": 6,
-      "name": "Mijal",
-      "role": "Treasurer",
-      "class": {
-        "2": true
       },
       "password": "asd"
     }
@@ -86,21 +50,21 @@
   "classes": [
     {
       "id": 1,
-      "name": "C++ class",
+      "name": "Zumba Class",
       "startDate": "2022-04-22T00:47:39.834Z",
       "duration": "2 hrs",
       "price": "40"
     },
     {
       "id": 2,
-      "name": "Javascript class",
-      "startDate": "2022-04-22T00:47:39.834Z",
+      "name": "Badminton Class",
+      "startDate": "2022-04-23T00:47:39.834Z",
       "duration": "3 hrs",
       "price": "60"
     },
     {
       "id": 3,
-      "name": "MineCraft class",
+      "name": "Basketball class",
       "startDate": "2022-04-13T00:47:39.834Z",
       "duration": "3 hrs",
       "price": "60"
@@ -110,77 +74,30 @@
     {
       "debtType": "Coach Mijal Expenses",
       "status": "Unpaid",
-      "debtAmount": "$30",
+      "debtAmount": "$102",
       "debtStartDate": "2022-04-05",
       "debtPriority": "1",
       "id": 1
+    },
+    {
+      "debtType": "Coach Sher Expenses",
+      "status": "Unpaid",
+      "debtAmount": "$207",
+      "debtStartDate": "2022-04-01",
+      "debtPriority": "1",
+      "id": 2
     }
   ],
   "user_messages": [
     {
       "messages": [
-        {
-          "message": "John (userID: 2) paid $54 for MineCraft class (classID: 3)",
-          "date": "2022-04-15T03:10:39.012Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        }
+      
       ],
       "id": 1
     },
     {
       "id": 2,
       "messages": [
-        {
-          "message": "Thanks for consistently showing up for practice, you have earned a discount!",
-          "date": "2022-04-15T04:37:14.659Z",
-          "sender": "Reminder Bot",
-          "senderID": 0,
-          "read": true
-        },
-        {
-          "message": "Thanks for consistently showing up for practice, you have earned a discount!",
-          "date": "2022-04-15T04:37:14.383Z",
-          "sender": "Reminder Bot",
-          "senderID": 0,
-          "read": true
-        },
-        {
-          "message": "Thanks for consistently showing up for practice, you have earned a discount!",
-          "date": "2022-04-15T04:36:43.553Z",
-          "sender": "Reminder Bot",
-          "senderID": 0,
-          "read": true
-        },
-        {
-          "message": "Thanks for consistently showing up for practice, you have earned a discount!",
-          "date": "2022-04-15T04:36:39.531Z",
-          "sender": "Reminder Bot",
-          "senderID": 0,
-          "read": true
-        },
-        {
-          "message": "Thanks for consistently showing up for practice, you have earned a discount!",
-          "date": "2022-04-15T04:36:29.263Z",
-          "sender": "Reminder Bot",
-          "senderID": 0,
-          "read": true
-        },
-        {
-          "message": "Thanks for consistently showing up for practice, you have earned a discount!",
-          "date": "2022-04-15T04:36:28.933Z",
-          "sender": "Reminder Bot",
-          "senderID": 0,
-          "read": true
-        },
-        {
-          "message": "Thanks for consistently showing up for practice, you have earned a discount!",
-          "date": "2022-04-15T04:35:56.034Z",
-          "sender": "Reminder Bot",
-          "senderID": 0,
-          "read": true
-        }
       ]
     },
     {
@@ -190,70 +107,19 @@
     {
       "id": 5,
       "messages": [
-        {
-          "message": "John (userID: 2) paid $54 for MineCraft class (classID: 3)",
-          "date": "2022-04-15T03:10:39.021Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": true
-        },
-        {
-          "message": "John (userID: 2) paid $60 for MineCraft class (classID: 3)",
-          "date": "2022-04-15T03:05:57.645Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": true
-        }
       ]
     },
     {
       "id": 6,
       "messages": [
-        {
-          "message": "John (userID: 2) paid $60 for MineCraft class (classID: 3)",
-          "date": "2022-04-15T03:05:57.645Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        },
-        {
-          "message": "John (userID: 2) paid $54 for MineCraft class (classID: 3)",
-          "date": "2022-04-15T03:10:39.021Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        }
       ]
     },
     {
       "id": 3,
       "messages": [
-        {
-          "message": "You have been removed from a class",
-          "date": "2022-04-14T19:19:58.271Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        },
-        {
-          "message": "Thanks for consistently showing up for practice, you have earned a discount!",
-          "date": "2022-04-15T04:37:14.707Z",
-          "sender": "Reminder Bot",
-          "senderID": 0,
-          "read": false
-        }
       ]
     }
   ],
   "payments": [
-    {
-      "name": "John",
-      "userID": 2,
-      "paidDate": "2022-04-15T03:10:38.842Z",
-      "price": "$54",
-      "classID": "3",
-      "className": "MineCraft class",
-      "id": 1
-    }
   ]
 }
