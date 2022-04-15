@@ -305,7 +305,7 @@ const PaymentInvoice = () => {
                 <React.Fragment>
                 <CssBaseline />
                 <Container maxWidth="lg">
-                    <Box sx={{ bgcolor: '#fff'}} >
+                    <Box sx={{ bgcolor: '#fff', height: '100vh'}} >
                         <br />
                         <br />
                         <a style={{display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'black', textAlign: 'center', fontSize: '40px'}}>MEM Income Statement</a>
