@@ -18,6 +18,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
+import logo from '../images/MEMlogo.png';
+
 import userContext from '../contexts/UserContext';
 import jsonDB from '../apis/jsonDB';
 
@@ -98,14 +100,15 @@ const ResponsiveAppBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
+          {/* <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
             RecClub
-          </Typography>
+          </Typography> */}
+          <img style={{marginTop: '10px', marginRight: '20px', marginBottom: '10px', width: 'auto', height: '40px'}} src={logo} alt="logo"/>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
