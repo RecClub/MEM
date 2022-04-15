@@ -80,7 +80,7 @@ const MemberLog = () => {
         } else {
           memberlist[i].penalty = false;
         }
-        if (!memberlist[i].discount && ((nump == attends && attends >= 12) || i < 10)) {
+        if (!memberlist[i].penalty && !memberlist[i].discount && ((nump == attends && attends >= 12) || i < 10)) {
           memberlist[i].discount = true;
           const data = await jsonDB.get(`/user_messages/${memberlist[i].id}`);
           const user_messages = data.data;
