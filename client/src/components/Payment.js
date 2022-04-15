@@ -82,7 +82,7 @@ const Payment = () => {
 
     if ('class' in newUserInfo && !newUserInfo.class[selectedClassID]) {
       paymentServer
-        .post(`/checkout?classID=${selectedClassID}&userID=${user.id}&price=${classObj.price}`)
+        .post(`/checkout?classID=${selectedClassID}&userID=${user.id}&price=${classObj.price}&penalty=${user.penalty}&discount=${user.discount}`)
         .then((response) => {
           window.location.href = response.data.checkoutURL;
         });
@@ -155,6 +155,13 @@ const Payment = () => {
       user = user.data;
 
       let d = new Date();
+
+      if ("penalty" in user){
+        user.penalty = !query.get("penalty");
+      }
+      if ("discount" in user){
+        user.discount = !query.get("discount");
+      }
 
       user.class[query.get('classID')] = true;
       if (user["paid_classes"]){

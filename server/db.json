@@ -23,7 +23,7 @@
     {
       "name": "John",
       "role": "Member",
-      "discount": true,
+      "discount": false,
       "attendance": 3,
       "nump": 3,
       "class": {
@@ -33,7 +33,13 @@
       },
       "password": "asd",
       "penalty": false,
-      "id": 2
+      "id": 2,
+      "paid_classes": {
+        "3": {
+          "date": "2022-04-15T03:10:38.842Z",
+          "price": "54"
+        }
+      }
     },
     {
       "name": "testbot",
@@ -114,208 +120,18 @@
     {
       "messages": [
         {
-          "message": "John (userID: 2) paid $60 for MineCraft class (classID: 3)",
-          "date": "2022-04-14T19:32:51.925Z",
+          "message": "John (userID: 2) paid $54 for MineCraft class (classID: 3)",
+          "date": "2022-04-15T03:10:39.012Z",
           "sender": "John",
           "senderID": 2,
-          "read": true
-        },
-        {
-          "message": "John (userID: 2) paid $60 for MineCraft class (classID: 3)",
-          "date": "2022-04-14T19:32:51.813Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": true
-        },
-        {
-          "message": "Nathan (userID: 1) paid $60 for MineCraft class (classID: 3)",
-          "date": "2022-04-14T19:18:46.638Z",
-          "sender": "Nathan",
-          "senderID": 1,
-          "read": true
-        },
-        {
-          "message": "Nathan (userID: 1) paid $60 for MineCraft class (classID: 3)",
-          "date": "2022-04-14T19:18:46.576Z",
-          "sender": "Nathan",
-          "senderID": 1,
-          "read": true
-        },
-        {
-          "message": "Nathan (userID: 1) paid $60 for MineCraft class (classID: 3)",
-          "date": "2022-04-14T19:17:34.969Z",
-          "sender": "Nathan",
-          "senderID": 1,
-          "read": true
-        },
-        {
-          "message": "Nathan (userID: 1) paid $60 for MineCraft class (classID: 3)",
-          "date": "2022-04-14T19:17:34.923Z",
-          "sender": "Nathan",
-          "senderID": 1,
-          "read": true
-        },
-        {
-          "message": "Nathan (userID: 1) paid $40 for C++ class (classID: 1)",
-          "date": "2022-04-14T19:15:54.768Z",
-          "sender": "Nathan",
-          "senderID": 1,
-          "read": true
-        },
-        {
-          "message": "Nathan (userID: 1) paid $60 for MineCraft class (classID: 3)",
-          "date": "2022-04-14T17:31:58.712Z",
-          "sender": "Nathan",
-          "senderID": 1,
-          "read": true
-        },
-        {
-          "message": "Nathan (userID: 1) paid $60 for MineCraft class (classID: 3)",
-          "date": "2022-04-14T17:31:58.566Z",
-          "sender": "Nathan",
-          "senderID": 1,
-          "read": true
-        },
-        {
-          "message": "Nathan (userID: 1) paid $60 for MineCraft class (classID: 3)",
-          "date": "2022-04-14T17:31:53.692Z",
-          "sender": "Nathan",
-          "senderID": 1,
-          "read": true
-        },
-        {
-          "message": "Nathan (userID: 1) paid $60 for MineCraft class (classID: 3)",
-          "date": "2022-04-14T17:31:53.579Z",
-          "sender": "Nathan",
-          "senderID": 1,
-          "read": true
-        },
-        {
-          "message": "Your scheduale has been changed",
-          "date": "2022-04-13T20:04:08.409Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": true
-        },
-        {
-          "message": "hi Nathan",
-          "date": "2022-04-13T04:27:47.679Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": true
-        },
-        {
-          "message": "You suck",
-          "date": "2022-04-13T00:47:39.834Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": true
-        },
-        {
-          "message": "Akatsuki is amazing",
-          "date": "2022-04-13T00:46:58.582Z",
-          "sender": "Nathan",
-          "senderID": 1,
-          "read": true
-        },
-        {
-          "message": "Your mother was a furloc",
-          "date": "2022-04-13T00:41:42.362Z",
-          "sender": "Nathan",
-          "senderID": 1,
-          "read": true
-        },
-        {
-          "message": "asdasd",
-          "date": "2022-04-13T00:26:57.719Z",
-          "sender": "Nathan",
-          "senderID": 1,
-          "read": true
+          "read": false
         }
       ],
       "id": 1
     },
     {
       "id": 2,
-      "messages": [
-        {
-          "message": "You have been assigned to a new class",
-          "date": "2022-04-14T15:04:46.883Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": true
-        },
-        {
-          "message": "You have been removed from a class",
-          "date": "2022-04-14T15:04:37.570Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": true
-        },
-        {
-          "message": "You have been removed from a class",
-          "date": "2022-04-14T15:04:05.598Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": true
-        },
-        {
-          "message": "You have been removed from a class",
-          "date": "2022-04-14T15:03:33.983Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": true
-        },
-        {
-          "message": "You have been assigned to a new class",
-          "date": "2022-04-14T15:01:16.391Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": true
-        },
-        {
-          "message": "hi ",
-          "date": "2022-04-14T03:20:37.687Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": true
-        },
-        {
-          "message": "bob 123",
-          "date": "2022-04-13T20:00:55.428Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": true
-        },
-        {
-          "message": "hi bob",
-          "date": "2022-04-13T04:27:11.144Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": true
-        },
-        {
-          "message": "test",
-          "date": "2022-04-13T04:20:32.983Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": true
-        },
-        {
-          "message": "bob",
-          "date": "2022-04-13T03:04:16.378Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": true
-        },
-        {
-          "message": "You have been removed from a class",
-          "date": "2022-04-14T18:30:35.561Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        }
-      ]
+      "messages": []
     },
     {
       "id": 4,
@@ -323,11 +139,41 @@
     },
     {
       "id": 5,
-      "messages": []
+      "messages": [
+        {
+          "message": "John (userID: 2) paid $60 for MineCraft class (classID: 3)",
+          "date": "2022-04-15T03:05:57.645Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": false
+        },
+        {
+          "message": "John (userID: 2) paid $54 for MineCraft class (classID: 3)",
+          "date": "2022-04-15T03:10:39.021Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": false
+        }
+      ]
     },
     {
       "id": 6,
-      "messages": []
+      "messages": [
+        {
+          "message": "John (userID: 2) paid $60 for MineCraft class (classID: 3)",
+          "date": "2022-04-15T03:05:57.645Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": false
+        },
+        {
+          "message": "John (userID: 2) paid $54 for MineCraft class (classID: 3)",
+          "date": "2022-04-15T03:10:39.021Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": false
+        }
+      ]
     },
     {
       "id": 3,
@@ -346,20 +192,11 @@
     {
       "name": "John",
       "userID": 2,
-      "paidDate": "2022-04-14T19:32:50.905Z",
-      "price": "$60",
+      "paidDate": "2022-04-15T03:10:38.842Z",
+      "price": "$54",
       "classID": "3",
       "className": "MineCraft class",
       "id": 1
-    },
-    {
-      "name": "John",
-      "userID": 2,
-      "paidDate": "2022-04-14T19:32:51.026Z",
-      "price": "$60",
-      "classID": "3",
-      "className": "MineCraft class",
-      "id": 2
     }
   ]
 }
