@@ -69,6 +69,7 @@ const ResponsiveAppBar = () => {
     setAnchorElNav(null);
     navigate("/");
     setUserID({"userID": ""});
+    window.location.reload(false); 
   };
 
   const handleMenuItemClick = (page) => {
