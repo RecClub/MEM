@@ -186,7 +186,7 @@ const RegisterPanel = (props) => {
   }
 
   return (
-    <Paper sx={{ height: "30vmax", width: "30vmax"}}>
+    <Paper sx={{ height: "33vmax", width: "30vmax"}}>
 
       <Grid container sx={{ height: "90%", padding: "50px" }} direction="column" justifyContent="space-between" alignItems="stretch">
 
