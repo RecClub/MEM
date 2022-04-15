@@ -54,8 +54,8 @@ const LoginPanel = (props) => {
   }
 
   return (
-    <Paper sx={{ height: "30vmax", width: "30vmax", margin: "5px" }}>
-      <Grid container sx={{ height: "90%", padding: "5px" }} direction="column" justifyContent="space-between" alignItems="stretch">
+    <Paper sx={{ height: "33vmax", width: "30vmax" }}>
+      <Grid container sx={{ height: "90%", padding: "60px" }} direction="column" justifyContent="space-between" alignItems="stretch">
         <Grid item>
           <Typography variant='h4' component='h4'>
             Log In
@@ -71,7 +71,7 @@ const LoginPanel = (props) => {
         </Grid>
 
         <Grid item>
-          <Button component={Link} onClick={OnLogIn} to={getDest()} variant='contained'>Log In</Button>
+          <Button style={{marginTop: '-80px'}} component={Link} onClick={OnLogIn} to={getDest()} variant='contained'>Log In</Button>
         </Grid>
 
       </Grid>
@@ -186,9 +186,9 @@ const RegisterPanel = (props) => {
   }
 
   return (
-    <Paper sx={{ height: "30vmax", width: "30vmax", margin: "5px" }}>
+    <Paper sx={{ height: "30vmax", width: "30vmax"}}>
 
-      <Grid container sx={{ height: "90%", padding: "5px" }} direction="column" justifyContent="space-between" alignItems="stretch">
+      <Grid container sx={{ height: "90%", padding: "50px" }} direction="column" justifyContent="space-between" alignItems="stretch">
 
         <Grid item>
           <Typography variant='h4' component='h4'>
