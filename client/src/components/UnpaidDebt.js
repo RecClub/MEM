@@ -65,11 +65,11 @@ const UnpaidDebt = () => {
     event.preventDefault();
     let promises = selectedDebt.map((user) => {
       return jsonDB.put(`/debt/${user.id}`, {
-        debtType: formValues.type || selectedDebt.length == 1 ? selectedDebt[0].debtType : "",
-        status: formValues.status || selectedDebt.length == 1 ? selectedDebt[0].status : "",
-        debtAmount: formValues.amount || selectedDebt.length == 1 ? selectedDebt[0].debtAmount : "",
-        debtStartDate: formValues.date || selectedDebt.length == 1 ? selectedDebt[0].debtStartDate : "",
-        debtPriority: formValues.priority || selectedDebt.length == 1 ? selectedDebt[0].debtPriority : ""
+        debtType: (formValues.type) ? (formValues.type) : ((selectedDebt.length == 1) ? (selectedDebt[0].debtType) : ""),
+        status: (formValues.status) ? (formValues.status) : ((selectedDebt.length == 1) ? (selectedDebt[0].status) : ""),
+        debtAmount: (formValues.amount) ? (formValues.amount) : ((selectedDebt.length == 1) ? (selectedDebt[0].debtAmount) : ""),
+        debtStartDate: (formValues.date) ? (formValues.date) : ((selectedDebt.length == 1) ? (selectedDebt[0].debtStartDate) : ""),
+        debtPriority: (formValues.priority) ? (formValues.priority) : ((selectedDebt.length == 1) ? (selectedDebt[0].debtPriority) : "")
       });
     });
     await Promise.all(promises);
