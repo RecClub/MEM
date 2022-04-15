@@ -4,35 +4,36 @@
       "id": 1,
       "name": "Nathan",
       "role": "Coach",
+      "phone": "41661444211",
+      "address": "444 Ryerson Road",
       "password": "asd",
-      "class": {
-      },
-      "paid_classes": {
-    
-      }
+      "class": {},
+      "paid_classes": {}
     },
     {
       "name": "John",
       "role": "Member",
-      "discount": true,
+      "phone": "41661114431",
+      "address": "444 Favio Road",
+      "discount": false,
       "attendance": 0,
       "nump": 2,
-      "class": {
-      },
+      "class": {},
       "password": "asd",
       "penalty": false,
       "id": 2,
-      "paid_classes": {
-      }
+      "paid_classes": {}
     },
     {
       "name": "Mijal",
+      "phone": "41664264431",
+      "address": "501 Macduff Road",
       "role": "Member",
       "discount": false,
       "attendance": 0,
-      "nump": 1,
+      "nump": 0,
       "class": {
-        "3" : false
+        "3": false
       },
       "password": "123",
       "penalty": false,
@@ -41,10 +42,28 @@
     {
       "id": 5,
       "name": "Sher",
+      "phone": "41663263331",
+      "address": "501 Toronto Avenue",
+      "discount": false,
+      "attendance": 0,
+      "nump": 0,
+      "penalty": false,
+      "class": {},
       "role": "Treasurer",
-      "class": {
-      },
       "password": "asd"
+    },
+    {
+      "name": "Char",
+      "phone": "4166664231",
+      "address": "30 AppleSeed Avenue",
+      "discount": false,
+      "attendance": 0,
+      "nump": 0,
+      "penalty": false,
+      "class": {},
+      "role": "Member",
+      "password": "asd",
+      "id": 6
     }
   ],
   "classes": [
@@ -90,15 +109,12 @@
   ],
   "user_messages": [
     {
-      "messages": [
-      
-      ],
+      "messages": [],
       "id": 1
     },
     {
       "id": 2,
-      "messages": [
-      ]
+      "messages": []
     },
     {
       "id": 4,
@@ -106,20 +122,24 @@
     },
     {
       "id": 5,
-      "messages": [
-      ]
+      "messages": []
     },
     {
       "id": 6,
-      "messages": [
-      ]
+      "messages": []
     },
     {
       "id": 3,
       "messages": [
+        {
+          "message": "Thanks for consistently showing up for practice, you have earned a discount!",
+          "date": "2022-04-15T21:40:31.590Z",
+          "sender": "Reminder Bot",
+          "senderID": 0,
+          "read": false
+        }
       ]
     }
   ],
-  "payments": [
-  ]
+  "payments": []
 }

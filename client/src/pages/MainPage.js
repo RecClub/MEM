@@ -164,7 +164,7 @@ const RegisterPanel = (props) => {
                 password: inputPsw
               })
 
-              setFeedback(" ");
+              setFeedback("Registration Successful!");
 
             } else {
               setFeedback("User already exist.");

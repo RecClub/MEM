@@ -98,7 +98,7 @@ const PaymentInvoice = () => {
 
 
 
-    let names = ['Jim', 'Bob', 'Mijal', 'Char', 'Char'];
+    let names = ['Jim', 'Bob', 'Mijal', 'Char', 'Nathan'];
     
     let randomNum = Math.floor(Math.random()*800);
     let randomNum2 = Math.floor(Math.random()*800);
@@ -113,7 +113,7 @@ const PaymentInvoice = () => {
         { id: 2, debtType: 'Coach ' + names[Math.floor(Math.random()*names.length)] + ' Expenses', debtStartDate: '2022-03-30', debtAmount: "$" + randomNum2, status: 'Unpaid'  },
       ]; 
 
-    let classez = ['MineCraft Class', 'Javascript class', 'C++ class'];
+    let classez = ['Zumba Class', 'Badminton Class', 'Basketball Class'];
 
     let gridData4 = {
         columns: [
