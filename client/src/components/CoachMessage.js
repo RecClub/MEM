@@ -62,6 +62,8 @@ const CoachMessage = () => {
       { field: 'id', hide: true },
       { field: 'name', headerName: 'Name' },
       { field: 'role', headerName: 'Role' },
+      { field: 'address', headerName: 'Address' },
+      { field: 'phone', headerName: 'Phone Number' },
     ],
     rows: users,
   };
