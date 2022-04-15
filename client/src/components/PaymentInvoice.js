@@ -219,7 +219,7 @@ const PaymentInvoice = () => {
                         <br />
                         <a style={{fontSize: '20px', color: 'black', marginLeft: '10%'}}>Date: 2022-03-14 to {new Date().toISOString().slice(0, 10)}</a>
                         <br />
-                        <a style={{fontSize: '20px', color: 'black', marginLeft: '10%'}}>Invoice #: 3</a>
+                        <a style={{fontSize: '20px', color: 'black', marginLeft: '10%'}}>Invoice #: 22225321</a>
                         <br />
                         <br />
                         <br />
@@ -313,7 +313,7 @@ const PaymentInvoice = () => {
                         <br />
                         <a style={{fontSize: '20px', color: 'black', marginLeft: '10%'}}>Date: Previous Month of 2022</a>
                         <br />
-                        <a style={{fontSize: '20px', color: 'black', marginLeft: '10%'}}>Invoice #: PRE_VE_IOUS</a>
+                        <a style={{fontSize: '20px', color: 'black', marginLeft: '10%'}}>Invoice #: {Math.floor(Math.random()*22225321)}</a>
                         <br />
                         <br />
                         <br />
