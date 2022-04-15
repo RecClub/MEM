@@ -100,7 +100,7 @@ const MemberAssign = () => {
   };
 
   let gridData2 = {
-    columns: [{ field: "id" }, { field: "name", headerName: "Name" }],
+    columns: [{ field: "id" }, { field: "name", headerName: "Name", width: '150' }],
     rows: classList,
   };
 
