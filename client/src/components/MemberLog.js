@@ -13,7 +13,7 @@ const MemberLog = () => {
   let [classList, setClassList] = useState();
   let [init, setInit] = useState(false);
 
-  const [classID, setValue] = React.useState(1);
+  const [classID, setValue] = useState(1);
 
   const handleChange = (event) => {
     setValue(parseInt(event.target.value));
@@ -29,9 +29,11 @@ const MemberLog = () => {
   }, []);
 
   useEffect(() => {
+    if (!classList) return;
+
     const fetchUsers = jsonDB.get("/users");
 
-    fetchUsers.then((res) => {
+    fetchUsers.then(async (res) => {
       let users = res.data;
       let memberlist = users.filter((x) => {
         return x.role == "Member";
@@ -57,17 +59,35 @@ const MemberLog = () => {
         }
 
         //Update the number of times the user has attended
-        attends = Object.keys(memberlist[i].class).length;
+        attends = Object.entries(memberlist[i].class).filter(([cid,paid]) => {
+          let cls = classList.find((c) => c.id === parseInt(cid));
+          return new Date(cls.date) < new Date();
+        }).length;
+
+        console.log(attends);
+
         memberlist[i].attendance = attends;
 
         //Grant discounts or give penalties
-        if (nump < attends) {
+        if (!memberlist[i].penalty && nump < attends) {
           memberlist[i].penalty = true;
+          const data = await jsonDB.get(`/user_messages/${memberlist[i].id}`);
+          const user_messages = data.data;
+          
+          let message = "You have missed a payment for a class, a penalty fee has been added.";
+          user_messages.messages = [...user_messages.messages, { message, date: new Date(), sender: "Reminder Bot", senderID: 0, read: false}];
+          await jsonDB.put(`/user_messages/${memberlist[i].id}`, user_messages);
         } else {
           memberlist[i].penalty = false;
         }
-        if ((nump == attends && attends >= 12) || i < 10) {
+        if (!memberlist[i].discount && ((nump == attends && attends >= 12) || i < 10)) {
           memberlist[i].discount = true;
+          const data = await jsonDB.get(`/user_messages/${memberlist[i].id}`);
+          const user_messages = data.data;
+          
+          let message = "Thanks for consistently showing up for practice, you have earned a discount!";
+          user_messages.messages = [...user_messages.messages, { message, date: new Date(), sender: "Reminder Bot", senderID: 0, read: false}];
+          await jsonDB.put(`/user_messages/${memberlist[i].id}`, user_messages);
         }
         jsonDB.put(`/users/${p}`, memberlist[i]);
       }
@@ -75,7 +95,7 @@ const MemberLog = () => {
       setUsers([...otherlist, ...memberlist]);
       setInit(true);
     });
-  }, [init]);
+  }, [init, classList]);
 
   if (!temp) return <div>Loading...</div>;
 

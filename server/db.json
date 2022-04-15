@@ -23,13 +23,13 @@
     {
       "name": "John",
       "role": "Member",
-      "discount": false,
-      "attendance": 3,
-      "nump": 3,
+      "discount": true,
+      "attendance": 0,
+      "nump": 2,
       "class": {
         "1": true,
         "2": true,
-        "3": true
+        "3": false
       },
       "password": "asd",
       "penalty": false,
@@ -45,14 +45,14 @@
       "name": "testbot",
       "role": "Member",
       "discount": true,
-      "attendance": 2,
+      "attendance": 0,
       "nump": 1,
       "class": {
         "2": true,
         "3": false
       },
       "password": "123",
-      "penalty": true,
+      "penalty": false,
       "id": 3
     },
     {
@@ -101,7 +101,7 @@
     {
       "id": 3,
       "name": "MineCraft class",
-      "startDate": "2022-04-22T00:47:39.834Z",
+      "startDate": "2022-04-13T00:47:39.834Z",
       "duration": "3 hrs",
       "price": "60"
     }
@@ -131,7 +131,57 @@
     },
     {
       "id": 2,
-      "messages": []
+      "messages": [
+        {
+          "message": "Thanks for consistently showing up for practice, you have earned a discount!",
+          "date": "2022-04-15T04:37:14.659Z",
+          "sender": "Reminder Bot",
+          "senderID": 0,
+          "read": true
+        },
+        {
+          "message": "Thanks for consistently showing up for practice, you have earned a discount!",
+          "date": "2022-04-15T04:37:14.383Z",
+          "sender": "Reminder Bot",
+          "senderID": 0,
+          "read": true
+        },
+        {
+          "message": "Thanks for consistently showing up for practice, you have earned a discount!",
+          "date": "2022-04-15T04:36:43.553Z",
+          "sender": "Reminder Bot",
+          "senderID": 0,
+          "read": true
+        },
+        {
+          "message": "Thanks for consistently showing up for practice, you have earned a discount!",
+          "date": "2022-04-15T04:36:39.531Z",
+          "sender": "Reminder Bot",
+          "senderID": 0,
+          "read": true
+        },
+        {
+          "message": "Thanks for consistently showing up for practice, you have earned a discount!",
+          "date": "2022-04-15T04:36:29.263Z",
+          "sender": "Reminder Bot",
+          "senderID": 0,
+          "read": true
+        },
+        {
+          "message": "Thanks for consistently showing up for practice, you have earned a discount!",
+          "date": "2022-04-15T04:36:28.933Z",
+          "sender": "Reminder Bot",
+          "senderID": 0,
+          "read": true
+        },
+        {
+          "message": "Thanks for consistently showing up for practice, you have earned a discount!",
+          "date": "2022-04-15T04:35:56.034Z",
+          "sender": "Reminder Bot",
+          "senderID": 0,
+          "read": true
+        }
+      ]
     },
     {
       "id": 4,
@@ -141,18 +191,18 @@
       "id": 5,
       "messages": [
         {
-          "message": "John (userID: 2) paid $60 for MineCraft class (classID: 3)",
-          "date": "2022-04-15T03:05:57.645Z",
-          "sender": "John",
-          "senderID": 2,
-          "read": false
-        },
-        {
           "message": "John (userID: 2) paid $54 for MineCraft class (classID: 3)",
           "date": "2022-04-15T03:10:39.021Z",
           "sender": "John",
           "senderID": 2,
-          "read": false
+          "read": true
+        },
+        {
+          "message": "John (userID: 2) paid $60 for MineCraft class (classID: 3)",
+          "date": "2022-04-15T03:05:57.645Z",
+          "sender": "John",
+          "senderID": 2,
+          "read": true
         }
       ]
     },
@@ -183,6 +233,13 @@
           "date": "2022-04-14T19:19:58.271Z",
           "sender": "John",
           "senderID": 2,
+          "read": false
+        },
+        {
+          "message": "Thanks for consistently showing up for practice, you have earned a discount!",
+          "date": "2022-04-15T04:37:14.707Z",
+          "sender": "Reminder Bot",
+          "senderID": 0,
           "read": false
         }
       ]
