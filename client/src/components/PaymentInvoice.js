@@ -100,13 +100,13 @@ const PaymentInvoice = () => {
 
     let names = ['Jim', 'Bob', 'Mijal', 'Char', 'Nathan'];
     
-    let randomNum = Math.floor(Math.random()*800);
+    let randomNum = Math.floor(Math.random()*600);
     let randomNum2 = Math.floor(Math.random()*800);
-    let randomNum3 = Math.floor(Math.random()*1000);
-    let randomNum4 = Math.floor(Math.random()*1000);
-    let randomNum5 = Math.floor(Math.random()*1000);
-    let randomNum6 = Math.floor(Math.random()*1000);
-    let randomNum7 = Math.floor(Math.random()*1000);
+    let randomNum3 = Math.floor(Math.random()*200);
+    let randomNum4 = Math.floor(Math.random()*200);
+    let randomNum5 = Math.floor(Math.random()*200);
+    let randomNum6 = Math.floor(Math.random()*200);
+    let randomNum7 = Math.floor(Math.random()*200);
 
     let dat = [
         { id: 1, debtType: 'Coach ' + names[Math.floor(Math.random()*names.length)] + ' Expenses', debtStartDate: '2022-01-30', debtAmount: "$" + randomNum, status: 'Unpaid' },
